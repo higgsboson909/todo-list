@@ -1,0 +1,114 @@
+* {
+    color: white;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    
+}
+
+/* --more-dark: #323232;
+--less-dark: #545454;
+*/
+
+body, html {
+    height: 100%;
+}
+/* ENTIRE DOM */
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+/* HEADER */
+ .navbar {
+    color: white;
+    background-color: #000;
+    height: 60px;
+}
+
+.title {
+    padding: 10px;
+}
+
+/* MAIN BODY */
+.main-body {
+    background-color: #323232;
+    height: 100%;
+    display: flex;
+    
+}
+
+/* SIDEBAR */
+.sidebar {
+    padding: 15px;
+    padding-top: 40px;
+    background-color: #525252;
+    min-width: 17em;
+}
+
+.default {
+    margin-bottom: 20px;
+}
+
+.default *, .projects li {
+    padding: 0.4em;
+}
+
+.projects h2 {
+    margin-bottom: 0.4rem;
+}
+.projects, .items-list {
+    list-style-type: none;
+}
+
+/* CONTENT */
+.container {
+    flex-direction: row;
+    margin: 0 auto 0;
+    width: 700px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* padding: 0 22% 22%; */
+    padding-top: 40px;
+    
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.container div {
+    display: flex;
+}
+.todo-items{
+    width: 100%;
+}
+.items-list {
+    
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+}
+.items-list hr {
+    margin-top: 15px;
+}
+.item {
+    display: flex;
+    gap: 10px;
+    /* border: 2px solid grey; */
+    margin-top: 20px;
+}
+.item-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
