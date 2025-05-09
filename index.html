@@ -42,9 +42,11 @@
                         Today
                     </h2>
                     
-                    <div class="filter">
-                        filter
-                    </div>
+                    <select name="list-priority" id="list-priority">
+                        <option value="l1">Default</option>
+                        <option value="l2">Date</option>
+                        <option value="l3">Priority</option>
+                    </select>
 
                 </div>
 
@@ -53,7 +55,12 @@
                         <li class="item">
                             <input type="checkbox" name="list">
                             <div class="item-detail">
-                                <div class="item-title">Ai</div>
+                                <div class="title-line">
+                                    <div class="item-title">Ai</div>
+                                    <div class="edit-delete">
+                                        edit & delete
+                                    </div>
+                                </div>
                                 <div class="description">desc</div>
                                 <div class="date">12/23/20023</div>
                             </div>
@@ -62,12 +69,40 @@
                         <li class="item">
                             <input type="checkbox" name="list">
                             <div class="item-detail">
-                                <div class="item-title">Ai</div>
+                                 <div class="title-line">
+                                    <div class="item-title">Ai</div>
+                                    <div class="edit-delete">
+                                        edit & delete
+                                    </div>
+                                </div>
+
                                 <div class="description">desc</div>
                                 <div class="date">12/23/20023</div>
                             </div>
                         </li>
                         <hr>
+                        <div class="edit">
+                            <div class="edit-detail">
+                                <input type="text" name="title" placeholder="Title">
+                                <input type="text" name="description" placeholder="Description">
+                                <div class="date-priority">
+                                    <input type="date" name="date" value="dd / mm / yyyy" id="date"> 
+                                    <select name="task-priority" id="priority">
+                                        <option value="">Priority</option>
+                                        <option value="p1">priority 1</option>
+                                        <option value="p2">priority 2</option>
+                                        <option value="p3">priority 3</option>
+                                        <option value="p4">priority 4</option>
+                                    </select>
+                                </div>
+                        </div>
+                            <div class="save-line">
+                                <button class="save">Save Task</button>
+                                <button class="cancel">Cancel</button>
+                            </div>
+                       <hr>
+
+
 
 
                     </ul>

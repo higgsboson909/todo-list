@@ -81,13 +81,25 @@ body, html {
     align-items: center;
     margin-top: 20px;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 80px;
+}
+
+#list-priority {
+    text-align: center;
+    padding: 5px;
+    border: 0;
+    border-radius: 5px;
+    height: 30px;
+    background-color: #000;
+    text-align: center;
+    
+    
 }
 
 .container div {
     display: flex;
 }
-.todo-items{
+.todo-items, .item-edit{
     width: 100%;
 }
 .items-list {
@@ -95,6 +107,13 @@ body, html {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
+    
+}
+.item-detail {
+    width: 100%;
+}
+.item input[type="checkbox"] {
+    padding: 0;
 }
 .items-list hr {
     margin-top: 15px;
@@ -103,12 +122,100 @@ body, html {
     display: flex;
     gap: 10px;
     /* border: 2px solid grey; */
+    margin-top: 10px;
+    padding: 10px;
+}
+.item:hover {
+   background-color: black; 
+   border-radius: 10px;
+}
+.title-line {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.edit {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
     margin-top: 20px;
+}
+.edit-delete {
+    text-align: left;
+}
+
+.edit-detail input{
+    background-color: #525252;
+    height: 30px;
+    border: 1px gray;
+    width: 100%;
+
+}
+
+.edit-detail input:focus {
+    outline: none;
+    box-shadow: none;
+    border: 0;
+}
+
+.edit-detail {
+    background-color: #525252;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 2px solid rgb(141, 136, 136);
+    border-radius: 5px;
+    padding: 10px;
 }
 .item-detail {
     display: flex;
+    width: 100%;
     flex-direction: column;
 }
 
+#date {
+    margin-top: 10px;
+    max-width:min-content;
+    padding: 5px;
+    border: 1px white solid;
+    border-radius: 5px;
+}
 
+.date-priority {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+#priority {
+    margin-top: 10px;
+    padding: 0 10px;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    height: 30px;
+    background-color: #323232;
+    text-align: center;
+    
+}
+
+.save-line {
+    padding-top: 10px;
+    border-radius: 5px;
+    display: flex;
+    gap: 10px;
+}
+.save {
+    background-color: #000;
+    border: solid black;
+    border-radius: 5px; 
+    padding: 5px;
+    color: white;
+}
+.cancel {
+    padding: 5px;
+    border-radius: 5px; 
+    color: black
+}
