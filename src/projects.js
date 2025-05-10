@@ -6,7 +6,7 @@ let createProject = (name) => {
     
     let project = {
         [`p${num}`]: name,
-        todo: null 
+        todo: []
     };
 
     projects.push(project);
@@ -15,6 +15,6 @@ let createProject = (name) => {
 
 
 createProject ("Ai");
-
+createProject ("Python");
 
 export { projects, createProject };
