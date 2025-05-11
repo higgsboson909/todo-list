@@ -155,16 +155,28 @@ function arrangeWrtDate(items) {
     return array;
 }
 
+function upcomingItems (items) {
+    let array = [];
+    items.forEach (item => {
+        let date = item.date.split("-");
+        if (compareAsc (new Date (+date[0], +date[1] - 1, +date[2]), new Date ()) == 1) {
+            array.push(item);
+        }
+    });
+
+    return array;
+}
+
 //  Logs
 createTodoItem("Ai Project", "do it today", "2012-11-01", 1, "Ai");
 createTodoItem("Python Project", "do it now", "2012-11-01", 2, "Python");
 createTodoItem("General", "do it now", "2012-11-12", 3, "Python");
 createTodoItem("Inbox", "do it now", "2012-11-12", 4);
-createTodoItem("Hi", "lets start", "2012-10-20", 3);
-createTodoItem("Hi", "lets start", "2012-11-30", 2);
-createTodoItem("Hi", "lets start", "2012-11-12", 4);
-createTodoItem("Hi", "lets start", "2012-11-2", 4);
-createTodoItem("Hi", "lets start", "2012-1-1", 0);
+createTodoItem("Hi", "lets start", "2025-06-12", 3);
+createTodoItem("Hi", "lets start", "2040-11-30", 2);
+createTodoItem("Hi", "lets start", "2025-6-20j", 4);
+createTodoItem("Hi", "lets start", "2025-11-22", 4);
+createTodoItem("Hi", "lets start", "2025-05-1", 0);
 
 // editTodoItems ("algo-course", "do it before summer", "date", "1", 2, "Python");
 // editTodoItems ("Node js", "do it before summer too", "date", "2", 1, "Ai");
@@ -191,8 +203,10 @@ inbox.forEach( el => {
 })
 // console.log(allItems())
 console.log(p);
-console.log(todayItems(allItems()));
+// console.log(todayItems(allItems()));
 // console.log(format(new Date(), "dd-MM-yyyy"))
 
-console.log(arrangeWrtPriority(inbox));
-console.log(arrangeWrtDate(inbox));
+// console.log(arrangeWrtPriority(inbox));
+
+// console.log(arrangeWrtDate(inbox));
+console.log(upcomingItems (inbox));
