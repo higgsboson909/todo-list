@@ -1,6 +1,6 @@
 import "./styles.css";
 import { projects, createProject, deleteProject, editProjectName } from "./projects.js"
-import { format, compareAsc } from "date-fns";
+import { format, compareAsc, min } from "date-fns";
 
 let p = projects;
 // Arrays for todo items
@@ -136,12 +136,35 @@ function todayItems (items) {
     return todays;
 }
 
+function arrangeWrtPriority (items) {
+    let array = items.sort((item1, item2) => {
+        return item1.priority - item2.priority;
+    });
+
+    return array;
+}
+
+function arrangeWrtDate(items) {
+    let array = items.sort((item1, item2) => {
+        let [year0, month0, day0] = item1.date.split("-");
+        let [year1, month1, day1] = item2.date.split("-");
+        return compareAsc (new Date (+year0, +month0 - 1, +day0),
+                           new Date (+year1, +month1 - 1, +day1));
+    });
+
+    return array;
+}
+
 //  Logs
-createTodoItem("Ai Project", "do it today", "11-05-2025", "1", "Ai");
-createTodoItem("Python Project", "do it now", "10-05-2025", "1", "Python");
-createTodoItem("General", "do it now", "11-05-2025", "1", "Python");
-createTodoItem("Inbox", "do it now", "11-02-2025", "1");
-createTodoItem("Hi", "lets start", "11-05-2025", "1");
+createTodoItem("Ai Project", "do it today", "2012-11-01", 1, "Ai");
+createTodoItem("Python Project", "do it now", "2012-11-01", 2, "Python");
+createTodoItem("General", "do it now", "2012-11-12", 3, "Python");
+createTodoItem("Inbox", "do it now", "2012-11-12", 4);
+createTodoItem("Hi", "lets start", "2012-10-20", 3);
+createTodoItem("Hi", "lets start", "2012-11-30", 2);
+createTodoItem("Hi", "lets start", "2012-11-12", 4);
+createTodoItem("Hi", "lets start", "2012-11-2", 4);
+createTodoItem("Hi", "lets start", "2012-1-1", 0);
 
 // editTodoItems ("algo-course", "do it before summer", "date", "1", 2, "Python");
 // editTodoItems ("Node js", "do it before summer too", "date", "2", 1, "Ai");
@@ -167,7 +190,9 @@ inbox.forEach( el => {
         console.log(el);
 })
 // console.log(allItems())
-console.log(inbox);
+console.log(p);
 console.log(todayItems(allItems()));
 // console.log(format(new Date(), "dd-MM-yyyy"))
 
+console.log(arrangeWrtPriority(inbox));
+console.log(arrangeWrtDate(inbox));
