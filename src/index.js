@@ -8,13 +8,17 @@ let today = [];
 
 // template for a todo item
 const Todo_Item = class {
+
+    static id = 1;
+
     constructor (title, description, date, priority, project="inbox") {
+
         this.title = title;
         this.description = description;
         this.date = date;
         this.priority = priority;
         this.project = project;
-
+        this.id = Todo_Item.id++;
     }
 
     // store in array
@@ -58,28 +62,46 @@ const createTodoItem = (title, description, date, priority, project) => {
 
 
 
-function editTodoItems (title, description, date, priority, index, project="inbox") {
+function editTodoItems (title, description, date, priority, id, project="inbox") {
     if ((project == "" || project == undefined || project == "inbox")) {
-        inbox[index].editItem (title, description, date, priority, project)
+        for (let i = 0; i < inbox.length; i++) {
+            if (inbox[i].id == id) 
+                inbox[i].editItem (title, description, date, priority, project);
+        }
     }
     else {
         p.forEach (element => {
-            if (element.name == project && index < element.todo.length) {
-                element.todo[index].editItem(title, description, date, priority, project);
+            for (let i = 0; i < element.todo.length; i++) {
+                if (element.todo[i].id == id && element.name == project) 
+                    element.todo[i].editItem(title, description, date, priority, project);
             }
         });
     }
 
 }
 
-function deleteTodoItem (index, pName="inbox") {
+function deleteTodoItem (id, pName="inbox") {
+    if ((pName == "" || pName == undefined || pName == "inbox")) {
+        for (let i = 0; i < inbox.length; i++) {
+            if (inbox[i].id == id) 
+                inbox.splice(i, 1);
+        }
+    }
+    else {
+        p.forEach (element => {
+            for (let i = 0; i < element.todo.length; i++) {
+                if (element.todo[i].id == id && element.name == pName) 
+                    element.todo.splice(i, 1);
+            }
+        });
+    }
+
+
     if (pName == "inbox") {
-        inbox.splice(index, 1);
     }
     else {
         p.forEach (element => {
             if (element.name == pName) {
-                element.todo.splice(index, 1);
             }
         });
     }
@@ -95,20 +117,18 @@ createTodoItem("General", "do it now", "12-2-2025", "1", "Python");
 createTodoItem("Inbox", "do it now", "12-2-2025", "1");
 createTodoItem("Hi", "lets start", "12-2-2025", "1");
 
-editTodoItems ("algo-course", "do it before summer", "date", "1", 0);
-editTodoItems ("Node js", "do it before summer too", "date", "1", 0);
-editTodoItems ("Machine learn", "Mustufa has done this", "date", "2", 0, "Ai");
-editTodoItems ("Scikit learn", "As an ass", "date", "2", 1, "Python");
+editTodoItems ("algo-course", "do it before summer", "date", "1", 2, "Python");
+editTodoItems ("Node js", "do it before summer too", "date", "2", 1, "Ai");
+editTodoItems ("Machine learn", "Mustufa has done this", "date", "2", 1, "Ai");
+editTodoItems ("Scikit learn", "As an ass", "date", "2", 2, "Python");
 
-deleteTodoItem (0);
-deleteTodoItem (0, "Python");
+deleteTodoItem (5 );
+deleteTodoItem (1, "Ai");
 
-// deleteProject ("Python")
-deleteProject ("Ai")
 
 editProjectName ("Python", "C++");
 editProjectName ("C++", "Python")
-editProjectName ("Zig", "C++")
+editProjectName ("Ai", "C++")
 
 console.log("Projects -----------", p);
 console.log("Inbox ---------------", inbox);
