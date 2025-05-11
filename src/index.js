@@ -1,5 +1,6 @@
 import "./styles.css";
 import { projects, createProject, deleteProject, editProjectName } from "./projects.js"
+import { format, compareAsc } from "date-fns";
 
 let p = projects;
 // Arrays for todo items
@@ -108,30 +109,65 @@ function deleteTodoItem (id, pName="inbox") {
 
 }
 
+// get all the individual items
+let allItems = () => {
+    let items = [...inbox];
+    p.forEach( element => {
+        element.todo.forEach (item => {
+            items.push(item);
+        })
+    })
 
+    return items;
+
+};
+
+// return array of today items
+function todayItems (items) {
+    let date = format(new Date(), "dd-MM-yyyy");
+    console.log(date);
+    let todays = [];
+    items.forEach(item => {
+        if (item.date == date) {
+            todays.push(item);
+        }
+    });
+
+    return todays;
+}
 
 //  Logs
-createTodoItem("Ai Project", "do it now", "12-2-2025", "1", "Ai");
-createTodoItem("Python Project", "do it now", "12-2-2025", "1", "Python");
-createTodoItem("General", "do it now", "12-2-2025", "1", "Python");
-createTodoItem("Inbox", "do it now", "12-2-2025", "1");
-createTodoItem("Hi", "lets start", "12-2-2025", "1");
+createTodoItem("Ai Project", "do it today", "11-05-2025", "1", "Ai");
+createTodoItem("Python Project", "do it now", "10-05-2025", "1", "Python");
+createTodoItem("General", "do it now", "11-05-2025", "1", "Python");
+createTodoItem("Inbox", "do it now", "11-02-2025", "1");
+createTodoItem("Hi", "lets start", "11-05-2025", "1");
 
-editTodoItems ("algo-course", "do it before summer", "date", "1", 2, "Python");
-editTodoItems ("Node js", "do it before summer too", "date", "2", 1, "Ai");
-editTodoItems ("Machine learn", "Mustufa has done this", "date", "2", 1, "Ai");
-editTodoItems ("Scikit learn", "As an ass", "date", "2", 2, "Python");
+// editTodoItems ("algo-course", "do it before summer", "date", "1", 2, "Python");
+// editTodoItems ("Node js", "do it before summer too", "date", "2", 1, "Ai");
+// editTodoItems ("Machine learn", "Mustufa has done this", "date", "2", 1, "Ai");
+// editTodoItems ("Scikit learn", "As an ass", "date", "2", 2, "Python");
 
-deleteTodoItem (5 );
-deleteTodoItem (1, "Ai");
-
-
-editProjectName ("Python", "C++");
-editProjectName ("C++", "Python")
-editProjectName ("Ai", "C++")
-
-console.log("Projects -----------", p);
-console.log("Inbox ---------------", inbox);
+// deleteTodoItem (5 );
+// deleteTodoItem (1, "Ai");
 
 
+// editProjectName ("Python", "C++");
+// editProjectName ("C++", "Python")
+// editProjectName ("Ai", "C++")
+
+console.log("Projects -----------");
+p.forEach( el => {
+    el.todo.forEach (i => {
+        console.log(i);
+    })
+})
+console.log("Inbox ---------------");
+inbox.forEach( el => {
+        console.log(el);
+})
+// console.log(allItems())
+console.log(inbox);
+console.log(todayItems(allItems()));
+// console.log(format(new Date(), "dd-MM-yyyy"))
 
