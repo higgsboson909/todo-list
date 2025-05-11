@@ -88,6 +88,14 @@ function deleteTodoItem (index, pName="inbox") {
 
 }
 
+function deleteProject (pName) {
+    for (let i = 0; i < p.length; i++) {
+        if (p[i][`p${i}`] == pName) {
+            p.splice(i, 1);
+        }
+    }
+}
+
 //  Logs
 createTodoItem("Ai Project", "do it now", "12-2-2025", "1", "Ai");
 createTodoItem("Python Project", "do it now", "12-2-2025", "1", "Python");
@@ -102,6 +110,9 @@ editTodoItems ("Scikit learn", "As an ass", "date", "2", 1, "Python");
 
 deleteTodoItem (0);
 deleteTodoItem (0, "Python");
+
+deleteProject ("Python")
+deleteProject ("Ai")
 
 console.log("Projects -----------", p);
 console.log("Inbox ---------------", inbox);
