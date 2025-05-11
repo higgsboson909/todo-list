@@ -1,5 +1,6 @@
 import "./styles.css";
-import  { projects, createProject } from "./projects.js";
+import { projects, createProject, deleteProject, editProjectName } from "./projects.js"
+
 let p = projects;
 // Arrays for todo items
 let inbox = [];
@@ -23,12 +24,11 @@ const Todo_Item = class {
             inbox.push(this);
         }
         if (p.length > 0) {
-            for (let i = 0; i < p.length; i++) {
-                if(this.project == p[i][`p${i}`]) {
-                    console.log(`p${i}`);
-                    projects[i].todo.push(this);
+            p.forEach(element => {
+                if(this.project == element.name) {
+                    element.todo.push(this);
                 }
-            }
+            })
         }
         else if (this.project == undefined) {
             console.error("project is undefined");
@@ -63,13 +63,11 @@ function editTodoItems (title, description, date, priority, index, project="inbo
         inbox[index].editItem (title, description, date, priority, project)
     }
     else {
-        for (let i = 0; i < p.length; i++) {
-            let name = `p${i}`;
-            if (p[i][name] == project && index < p[i].todo.length) {
-                console.log(p[i][name])
-                p[i].todo[index].editItem(title, description, date, priority, project);
+        p.forEach (element => {
+            if (element.name == project && index < element.todo.length) {
+                element.todo[index].editItem(title, description, date, priority, project);
             }
-        }
+        });
     }
 
 }
@@ -79,22 +77,16 @@ function deleteTodoItem (index, pName="inbox") {
         inbox.splice(index, 1);
     }
     else {
-        for(let i = 0; i < p.length; i++) {
-            if (p[i][`p${i}`] == pName) {
-                p[i].todo.splice(index, 1);
+        p.forEach (element => {
+            if (element.name == pName) {
+                element.todo.splice(index, 1);
             }
-        }
+        });
     }
 
 }
 
-function deleteProject (pName) {
-    for (let i = 0; i < p.length; i++) {
-        if (p[i][`p${i}`] == pName) {
-            p.splice(i, 1);
-        }
-    }
-}
+
 
 //  Logs
 createTodoItem("Ai Project", "do it now", "12-2-2025", "1", "Ai");
@@ -111,12 +103,15 @@ editTodoItems ("Scikit learn", "As an ass", "date", "2", 1, "Python");
 deleteTodoItem (0);
 deleteTodoItem (0, "Python");
 
-deleteProject ("Python")
+// deleteProject ("Python")
 deleteProject ("Ai")
+
+editProjectName ("Python", "C++");
+editProjectName ("C++", "Python")
+editProjectName ("Zig", "C++")
 
 console.log("Projects -----------", p);
 console.log("Inbox ---------------", inbox);
-
 
 
 
