@@ -57,14 +57,10 @@ const createTodoItem = (title, description, date, priority, project) => {
 }
 
 
-createTodoItem("Ai Project", "do it now", "12-2-2025", "1", "Ai");
-createTodoItem("Python Project", "do it now", "12-2-2025", "1", "Python");
-createTodoItem("General", "do it now", "12-2-2025", "1", "Python");
-createTodoItem("Inbox", "do it now", "12-2-2025", "1", "");
 
-function general2project (title, description, date, priority, project="inbox", index) {
-    if ((index == undefined) && (project == "" || project == undefined || project == "inbox")) {
-        inbox[0].editItem (title, description, date, priority, project)
+function editTodoItems (title, description, date, priority, index, project="inbox") {
+    if ((project == "" || project == undefined || project == "inbox")) {
+        inbox[index].editItem (title, description, date, priority, project)
     }
     else {
         for (let i = 0; i < p.length; i++) {
@@ -78,11 +74,34 @@ function general2project (title, description, date, priority, project="inbox", i
 
 }
 
-general2project ("algo-course", "do it before summer", "date", "1", "");
-general2project ("Node js", "do it before summer too", "date", "1");
-general2project ("Machine learn", "Mustufa has done this", "date", "2", "Ai", 0);
-general2project ("Scikit learn", "As an ass", "date", "2", "Python", 1);
+function deleteTodoItem (index, pName="inbox") {
+    if (pName == "inbox") {
+        inbox.splice(index, 1);
+    }
+    else {
+        for(let i = 0; i < p.length; i++) {
+            if (p[i][`p${i}`] == pName) {
+                p[i].todo.splice(index, 1);
+            }
+        }
+    }
 
+}
+
+//  Logs
+createTodoItem("Ai Project", "do it now", "12-2-2025", "1", "Ai");
+createTodoItem("Python Project", "do it now", "12-2-2025", "1", "Python");
+createTodoItem("General", "do it now", "12-2-2025", "1", "Python");
+createTodoItem("Inbox", "do it now", "12-2-2025", "1");
+createTodoItem("Hi", "lets start", "12-2-2025", "1");
+
+editTodoItems ("algo-course", "do it before summer", "date", "1", 0);
+editTodoItems ("Node js", "do it before summer too", "date", "1", 0);
+editTodoItems ("Machine learn", "Mustufa has done this", "date", "2", 0, "Ai");
+editTodoItems ("Scikit learn", "As an ass", "date", "2", 1, "Python");
+
+deleteTodoItem (0);
+deleteTodoItem (0, "Python");
 
 console.log("Projects -----------", p);
 console.log("Inbox ---------------", inbox);
