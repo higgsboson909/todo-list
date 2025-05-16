@@ -1,6 +1,7 @@
 import "./styles.css";
 import { projects, createProject, deleteProject, editProjectName } from "./projects.js"
 import { format, compareAsc, min } from "date-fns";
+import { defaultSidebarEl } from "./event_listeners.js";
 
 let p = projects;
 // Arrays for todo items
@@ -168,8 +169,8 @@ function upcomingItems (items) {
 }
 
 //  Logs
-createTodoItem("Ai Project", "do it today", "2012-11-01", 1, "Ai");
-createTodoItem("Python Project", "do it now", "2012-11-01", 2, "Python");
+createTodoItem("Ai Project", "do it today", "2032-11-01", 1, "Ai");
+createTodoItem("Python Project", "do it now", "2052-11-01", 2, "Python");
 createTodoItem("General", "do it now", "2012-11-12", 3, "Python");
 createTodoItem("Inbox", "do it now", "2012-11-12", 4);
 createTodoItem("Hi", "lets start", "2025-06-12", 3);
@@ -210,3 +211,6 @@ console.log(p);
 
 // console.log(arrangeWrtDate(inbox));
 console.log(upcomingItems (inbox));
+
+
+export { inbox, today ,upcomingItems};
