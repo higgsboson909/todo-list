@@ -64,6 +64,13 @@ body, html {
     list-style-type: none;
 }
 
+.default div:hover, .projects li:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+
 /* CONTENT */
 .container {
     flex-direction: row;
