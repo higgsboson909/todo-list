@@ -13,13 +13,14 @@ const Todo_Item = class {
 
     static id = 1;
 
-    constructor (title, description, date, priority, project="inbox") {
+    constructor (title, description, date, priority, isDone, project="inbox") {
 
         this.title = title;
         this.description = description;
         this.date = date;
         this.priority = priority;
         this.project = project;
+        this.isDone = isDone;
         this.id = Todo_Item.id++;
     }
 
@@ -42,11 +43,12 @@ const Todo_Item = class {
         }
     }
 
-    editItem (title, description, date, priority, project="inbox") {
+    editItem (title, description, date, priority, isDone, project="inbox") {
         this.title = title;
         this.description = description;
         this.date = date;
         this.priority = priority;
+        this.isDone = isDone;
         this.project = project;
     }
 
@@ -56,26 +58,26 @@ const Todo_Item = class {
 
 
 // create and save the item in data-structure
-const createTodoItem = (title, description, date, priority, project) => {
-    let todoItem = new Todo_Item (title, description, date, priority, project);
+const createTodoItem = (title, description, date, priority, id, isDone, project) => {
+    let todoItem = new Todo_Item (title, description, date, priority, isDone, project);
     todoItem.saveTodoItem();
 
 }
 
 
 
-function editTodoItems (title, description, date, priority, id, project="inbox") {
+function editTodoItems (title, description, date, priority, id, isDone, project="inbox") {
     if ((project == "" || project == undefined || project == "inbox")) {
         for (let i = 0; i < inbox.length; i++) {
             if (inbox[i].id == id) 
-                inbox[i].editItem (title, description, date, priority, project);
+                inbox[i].editItem (title, description, date, priority, id, isDone, project);
         }
     }
     else {
         p.forEach (element => {
             for (let i = 0; i < element.todo.length; i++) {
                 if (element.todo[i].id == id && element.name == project) 
-                    element.todo[i].editItem(title, description, date, priority, project);
+                    element.todo[i].editItem(title, description, date, priority, isDone, project);
             }
         });
     }
@@ -169,17 +171,18 @@ function upcomingItems (items) {
 }
 
 //  Logs
-createTodoItem("Ai Project", "do it today", "2032-11-01", 1, "Ai");
-createTodoItem("Python Project", "do it now", "2052-11-01", 2, "Python");
-createTodoItem("General", "do it now", "2012-11-12", 3, "Python");
-createTodoItem("Inbox", "do it now", "2012-11-12", 4);
-createTodoItem("Hi", "lets start", "2025-06-12", 3);
-createTodoItem("Hi", "lets start", "2040-11-30", 2);
-createTodoItem("Hi", "lets start", "2025-6-20j", 4);
-createTodoItem("Hi", "lets start", "2025-11-22", 4);
-createTodoItem("Hi", "lets start", "2025-05-1", 0);
+createTodoItem("Ai Project", "do it today", "2032-11-01", "2", 1, true, "Ai");
+createTodoItem("Python Project", "do it now", "2052-11-01", "3", 2, true, "Python");
+createTodoItem("General", "do it now", "2012-11-12", "3", 3, true, "Python");
+createTodoItem("Inbox", "do it now", "2012-11-12", "4", 4, false);
+createTodoItem("Hi", "lets start", "2025-06-12", "1", 3, false);
+createTodoItem("Hi", "lets start", "2040-11-30", "3", 2, true);
+createTodoItem("Hi", "lets start", "2025-6-20", "2", 4, false);
+createTodoItem("Hi", "lets start", "2025-11-22", "5", 4, true);
+createTodoItem("Hi", "lets start", "2025-05-1", "5", 0, false);
 
-// editTodoItems ("algo-course", "do it before summer", "date", "1", 2, "Python");
+editTodoItems ("algo-course", "do it before summer", "2028-03-02", "1", 2, false, "Python");
+editTodoItems("Yo", "lets start", "2025-06-12", "1", 3, false);
 // editTodoItems ("Node js", "do it before summer too", "date", "2", 1, "Ai");
 // editTodoItems ("Machine learn", "Mustufa has done this", "date", "2", 1, "Ai");
 // editTodoItems ("Scikit learn", "As an ass", "date", "2", 2, "Python");
