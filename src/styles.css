@@ -12,13 +12,14 @@
 */
 
 body, html {
+    background-color: #323232;
     height: 100%;
 }
 /* ENTIRE DOM */
 .todo-list {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    min-height: 100%; 
 }
 
 
@@ -35,18 +36,21 @@ body, html {
 
 /* MAIN BODY */
 .main-body {
-    background-color: #323232;
-    height: 100%;
+    /* background-color: #323232; */
     display: flex;
-    
+    min-height: 100vh; 
+    /* border: solid yellow; */
+
 }
 
 /* SIDEBAR */
 .sidebar {
+    min-height: 100%; 
     padding: 15px;
     padding-top: 40px;
     background-color: #525252;
     min-width: 17em;
+    /* height: 100%; */
 }
 
 .default {
@@ -73,14 +77,12 @@ body, html {
 
 /* CONTENT */
 .container {
+    height: 100%;
     flex-direction: row;
     margin: 0 auto 0;
     width: 900px;
-    /* display: flex; */
     /* flex-direction: column; */
-    /* padding: 0 22% 22%; */
     padding-top: 40px;
-    
 }
 .content {
     display: flex;
@@ -116,11 +118,10 @@ body, html {
     width: 100%;
 }
 .items-list {
-    
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    
+    margin-bottom: 12rem; 
 }
 .item-detail {
     width: 100%;
@@ -232,5 +233,5 @@ body, html {
 .cancel {
     padding: 5px;
     border-radius: 5px; 
-    color: black
+    color: black;
 }
