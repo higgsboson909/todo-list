@@ -1,10 +1,13 @@
 import "./styles.css";
-import { projects, createProject, deleteProject, editProjectName } from "./projects.js"
 import { format, compareAsc, min } from "date-fns";
-import { defaultSidebarEl } from "./event_listeners.js";
+import { projects, createProject, deleteProject, editProjectName } from "./projects.js"
+import { defaultSidebarEl, projectsEl, mainHeadingEl, createTodoItemEl, todoItemsListEl} from "./dom_elements.js"; 
+import { defaultSidebarEl_evL } from "./render_elements.js";
+// defaultSidebarEl_evL();
+import { renderMainHeading, renderTodayItems } from "./render_elements.js"
 
 let p = projects;
-// Arrays for todo items
+
 let inbox = [];
 let today = [];
 
@@ -127,7 +130,7 @@ let allItems = () => {
 
 // return array of today items
 function todayItems (items) {
-    let date = format(new Date(), "dd-MM-yyyy");
+    let date = format(new Date(), "yyyy-MM-dd");
     console.log(date);
     let todays = [];
     items.forEach(item => {
@@ -135,7 +138,6 @@ function todayItems (items) {
             todays.push(item);
         }
     });
-
     return todays;
 }
 
@@ -169,17 +171,16 @@ function upcomingItems (items) {
 
     return array;
 }
-
 //  Logs
 createTodoItem("Ai Project", "do it today", "2032-11-01", "2", 1, true, "Ai");
 createTodoItem("Python Project", "do it now", "2052-11-01", "3", 2, true, "Python");
 createTodoItem("General", "do it now", "2012-11-12", "3", 3, true, "Python");
 createTodoItem("Inbox", "do it now", "2012-11-12", "4", 4, false);
 createTodoItem("Hi", "lets start", "2025-06-12", "1", 3, false);
-createTodoItem("Hi", "lets start", "2040-11-30", "3", 2, true);
+createTodoItem("Hi", "lets start", "2025-05-19", "3", 2, true);
 createTodoItem("Hi", "lets start", "2025-6-20", "2", 4, false);
 createTodoItem("Hi", "lets start", "2025-11-22", "5", 4, true);
-createTodoItem("Hi", "lets start", "2025-05-1", "5", 0, false);
+createTodoItem("Hi", "lets start", "2025-05-19", "5", 0, false);
 
 editTodoItems ("algo-course", "do it before summer", "2028-03-02", "1", 2, false, "Python");
 editTodoItems("Yo", "lets start", "2025-06-12", "1", 3, false);
@@ -195,6 +196,7 @@ editTodoItems("Yo", "lets start", "2025-06-12", "1", 3, false);
 // editProjectName ("C++", "Python")
 // editProjectName ("Ai", "C++")
 
+// defaultSidebarEl_evL();
 console.log("Projects -----------");
 p.forEach( el => {
     el.todo.forEach (i => {
@@ -207,13 +209,10 @@ inbox.forEach( el => {
 })
 // console.log(allItems())
 console.log(p);
-// console.log(todayItems(allItems()));
-// console.log(format(new Date(), "dd-MM-yyyy"))
+let upcoming = upcomingItems(inbox);
+today = todayItems(inbox);
 
-// console.log(arrangeWrtPriority(inbox));
+console.log(upcoming)
+defaultSidebarEl_evL(today, inbox, upcoming);
 
-// console.log(arrangeWrtDate(inbox));
-console.log(upcomingItems (inbox));
-
-
-export { inbox, today ,upcomingItems};
+export { inbox, today , upcoming};
