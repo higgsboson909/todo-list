@@ -95,6 +95,23 @@ function create_n_pushItem(title, description, date, priority, isDone, project) 
 
 }
 
+function editTodoItem(id, title, description, date, priority, isDone, project) {
+    if (project == "inbox")  {
+        let item = inbox.find(item => ( item.id == id ));
+        item.edit(title, description, date, priority, isDone, project);
+    }
+
+    else if (project != "inbox") {
+        let p = projects.find(p => (p.title == project));
+        let item = p.todos.find(todo => (todo.id == id));
+        console.log( "hi");
+        item.edit(title, description, date, priority, isDone, project);
+    }
+
+
+    // item.edit();
+}
+
 function deleteProject(id) {
     projects.forEach((p, i) => {
         if (p.id == id) {
@@ -182,4 +199,4 @@ function getUpcomingItems (items) {
     return array;
 }
 
-export { inbox, projects, today, upcoming, create_n_pushItem, deleteProject, deleteTodoItem, allItems, todayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems}
+export { inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, deleteTodoItem, allItems, todayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems}
