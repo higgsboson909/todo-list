@@ -1,5 +1,5 @@
 import "./styles.css";
-import {  inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, deleteTodoItem, allItems, todayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems } from "./todo.js";
+import {  inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, allItems, todayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems } from "./todo.js";
 // import { projects, createProject, deleteProject, editProjectName } from "./projects.js"
 // import { defaultSidebarEl, projectsEl, mainHeadingEl, createTodoItemEl, todoItemsListEl} from "./dom_elements.js"; 
 import { defaultSidebarEl_evL } from "./render_elements.js";
@@ -26,14 +26,22 @@ editTodoItem(0, "Node js", "do it before summer too", "date", "2", false, "Ai");
 editTodoItem(1, "Machine learn", "Mustufa has done this", "date", "2", true, "Ai");
 editTodoItem(3, "Scikit learn", "As an ass", "date", "2", 2, "Python");
 
+
+// id and name of project
 deleteTodoItem(0, "Ai");
 deleteTodoItem(3, "Python");
 deleteTodoItem(5, "Zig");
 
+// id and new name
+editProjectName(0 , "Artificial Intelligence");
+editProjectName(1 , "Py");
+editProjectName(2 , "Zig Lang");
 
-// editProjectName ("Python", "C++");
-// editProjectName ("C++", "Python")
-// editProjectName ("Ai", "C++")
+
+deleteProject(0)
+deleteProject(1)
+deleteProject(2)
+
 
 // defaultSidebarEl_evL();
 // console.log("Projects -----------");

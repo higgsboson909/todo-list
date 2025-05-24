@@ -44,13 +44,11 @@ const Project = class {
 
     create(title) {
 
-        let project = {
-            title: title,
-            todos: [],
-            id: Project.id++
-        };
+        this.title = title;
+        this.id = Project.id++;
+        this.todos = [];
 
-        return project; 
+        return this; 
     }
 
     edit(title) {
@@ -71,25 +69,20 @@ function create_n_pushItem(title, description, date, priority, isDone, project) 
     if(item.project != "inbox" && item.project != "") {
 
         let found = projects.find(p => (p.title == project));
-        // console.log(found)
         if (!found){
             let newProject = new Project();
             newProject = newProject.create(project);
             newProject.todos.push(item);
-            // console.log(newProject);
             projects.push(newProject);
         }
  
        if (found)  {
             projects.forEach(p => {
             if (p.title == project) {
-                // console.log(p.todos);
                 p.todos.push(item);
             }
         })
        }
-            // console.log(projects);
-
        
     }
 
@@ -98,18 +91,18 @@ function create_n_pushItem(title, description, date, priority, isDone, project) 
 function editTodoItem(id, title, description, date, priority, isDone, project) {
     if (project == "inbox")  {
         let item = inbox.find(item => ( item.id == id ));
+        console.log("hi i am done ", item instanceof Todo_Item)
         item.edit(title, description, date, priority, isDone, project);
     }
 
     else if (project != "inbox") {
         let p = projects.find(p => (p.title == project));
         let item = p.todos.find(todo => (todo.id == id));
+        console.log("hi i am done ", item instanceof Todo_Item)
         console.log( "hi");
         item.edit(title, description, date, priority, isDone, project);
     }
 
-
-    // item.edit();
 }
 
 function deleteProject(id) {
@@ -119,7 +112,6 @@ function deleteProject(id) {
         }
     });
 }
-
 
 // delete todo item from respective array
 function deleteTodoItem(id, pName="inbox") {
@@ -141,6 +133,12 @@ function deleteTodoItem(id, pName="inbox") {
     }
 }
 
+function editProjectName(id, newName) {
+    let p = new Project();
+    p = projects.find(p => (p.id == id));
+
+    p.edit(newName);
+}
 
 // get all the individual items
 function allItems() {
@@ -199,4 +197,4 @@ function getUpcomingItems (items) {
     return array;
 }
 
-export { inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, deleteTodoItem, allItems, todayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems}
+export { inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, allItems, todayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems}
