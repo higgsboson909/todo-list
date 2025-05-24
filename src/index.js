@@ -22,13 +22,13 @@ create_n_pushItem("Hi", "lets start", "2025-6-20", "2", false);
 create_n_pushItem("Hi", "lets start", "2025-11-22", "5", true);
 create_n_pushItem("Hi", "lets start", "2025-05-19", "5", false);
 
-// editTodoItems ("algo-course", "do it before summer", "2028-03-02", "1", 2, false, "Python");
 editTodoItem(0, "Node js", "do it before summer too", "date", "2", false, "Ai");
 editTodoItem(1, "Machine learn", "Mustufa has done this", "date", "2", true, "Ai");
 editTodoItem(3, "Scikit learn", "As an ass", "date", "2", 2, "Python");
 
-// deleteTodoItem (5 );
-// deleteTodoItem (1, "Ai");
+deleteTodoItem(0, "Ai");
+deleteTodoItem(3, "Python");
+deleteTodoItem(5, "Zig");
 
 
 // editProjectName ("Python", "C++");

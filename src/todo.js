@@ -132,9 +132,9 @@ function deleteTodoItem(id, pName="inbox") {
     }
     else {
         projects.forEach(p => {
-            p.items.forEach((item, i) => {
+            p.todos.forEach((item, i) => {
                 if (item.id == id) {
-                    p.items[i].splice(i, 1);
+                    p.todos.splice(i, 1);
                 }
             });
         });
