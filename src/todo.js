@@ -80,9 +80,9 @@ function create_n_pushItem(title, description, date, priority, isDone, project) 
             projects.forEach(p => {
             if (p.title == project) {
                 p.todos.push(item);
-            }
+            };
         })
-       }
+;       }
        
     }
 
@@ -140,17 +140,22 @@ function editProjectName(id, newName) {
     p.edit(newName);
 }
 
+
+function getProjectItems(id) {
+    let p = projects.find(p => (p.id== id));
+    return p.todos;
+}
+
 // get all the individual items
 function allItems() {
     let items = [...inbox];
-    p.forEach( element => {
-        element.todo.forEach (item => {
+    projects.forEach (p => {
+        p.todos.forEach (item => {
             items.push(item);
         })
     })
 
     return items;
-
 };
 
 // return array of today items
@@ -158,16 +163,23 @@ function todayItems (items) {
     let date = format(new Date(), "yyyy-MM-dd");
     console.log(date);
     let todays = [];
+    if (items.length == 0) {
+        return 'not found';
+    }
+
     items.forEach(item => {
         if (item.date == date) {
             todays.push(item);
         }
+
     });
     return todays;
+
 }
 
 function arrangeWrtPriority (items) {
-    let array = items.sort((item1, item2) => {
+    let array = [...items];
+    array = array.sort((item1, item2) => {
         return item1.priority - item2.priority;
     });
 
@@ -175,7 +187,8 @@ function arrangeWrtPriority (items) {
 }
 
 function arrangeWrtDate(items) {
-    let array = items.sort((item1, item2) => {
+    let array = [...items];
+    array = array.sort((item1, item2) => {
         let [year0, month0, day0] = item1.date.split("-");
         let [year1, month1, day1] = item2.date.split("-");
         return compareAsc (new Date (+year0, +month0 - 1, +day0),
@@ -185,7 +198,7 @@ function arrangeWrtDate(items) {
     return array;
 }
 
-function getUpcomingItems (items) {
+function getUpcomingItems(items) {
     let array = [];
     items.forEach (item => {
         let date = item.date.split("-");
@@ -197,4 +210,4 @@ function getUpcomingItems (items) {
     return array;
 }
 
-export { inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, allItems, todayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems}
+export { inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, getProjectItems, allItems, todayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems}
