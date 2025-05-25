@@ -1,10 +1,14 @@
-import { projects } from "./projects";
+import { projects } from "./index";
+
+// let p= [...projects];
+// console.log("projecst " , projects.length)
+// console.log("projecst " , projects)
 
 let defaultSidebarEl = document.querySelectorAll(".default div");
 
-let projectsEl = document.querySelectorAll(".projects li");
+let projectSidebarEl = document.querySelector(".projects li");
 
-let createTodoItemEl = (title, description, date, priority, isDone, project="inbox") => {
+let createTodoDomEl = (title, description, date, id, priority, isDone, project="inbox") => {
     let todoItemEl = document.createElement("li");
     todoItemEl.setAttribute("class", "todo-item");
 
@@ -34,7 +38,15 @@ let createTodoItemEl = (title, description, date, priority, isDone, project="inb
     titleLineEl.append(itemTitleEl);
 
     let editDeleteEl = document.createElement("div");
-    editDeleteEl.innerText = "edit & delete";
+    let edit = document.createElement("div");
+    edit.classList.add("edit");
+    edit.innerText = "edit";
+    let deleteI = document.createElement("div");
+    deleteI.classList.add("delete");
+    deleteI.innerText = "delete";
+    editDeleteEl.classList.add("edit-delete");
+    editDeleteEl.append(edit);
+    editDeleteEl.append(deleteI);
     titleLineEl.append(editDeleteEl);
 
     let descriptionEl = document.createElement("div");
@@ -48,22 +60,41 @@ let createTodoItemEl = (title, description, date, priority, isDone, project="inb
 
     let breakEl = document.createElement("hr");
 
+    todoItemEl.classList.add(`item-${id}`);
+
     todoItemEl.append(breakEl);
-    console.log(todoItemEl);
 
 
     return todoItemEl;
 
 }
 
-
 let todoItemsListEl = document.querySelector(".items-list");
 
+function emptyTodoListEl() {
+    todoItemsListEl.innerHTML = "";
+}
 
-// todoItemsListEl.append(createTodoItemEl());
-// todoItemsListEl.append(createTodoItemEl());
+function createProjectNamesEl(ps) {
+    let array = [];
+    let len = projects.length;
+    if (len == 0) {
+        console.log("No project found");
+        return 0;
+    }
+    else if (len > 0) {
+        projects.forEach(p => {
+            let pNameEl = document.createElement("li");
+            pNameEl.setAttribute("pId", `${p.id}`)
+            pNameEl.innerHTML = p.title;
+            array.push(pNameEl);
+        })
+    }
+
+    return array;
+}
 
 let mainHeadingEl = document.querySelector(".main-heading");
 
-export { defaultSidebarEl, projectsEl, mainHeadingEl, createTodoItemEl, todoItemsListEl};
+export { defaultSidebarEl, projectSidebarEl, mainHeadingEl, createTodoDomEl, todoItemsListEl, emptyTodoListEl, createProjectNamesEl };
 

@@ -40,7 +40,6 @@
                 <ul class="projects">
                     <h2 class="project">Projects</h2>
                     <li class="Ai">Ai</li>
-                    <li class="Python">Python</li>
                 </ul>
             </div>
 
@@ -61,7 +60,7 @@
                 <div class="todo-items">
                     <ul class="items-list">
                             <hr>
-                        <li class="todo-item">
+                        <!-- <li class="todo-item">
                             <div class="item">
                                 <input type="checkbox" name="list">
                                 <div class="item-detail">
@@ -84,7 +83,8 @@
                                     <div class="title-line">
                                         <div class="item-title">Ai</div>
                                         <div class="edit-delete">
-                                            edit & delete
+                                            <div class="edit">edit</div>
+                                            <div class="delete">delete</div>
                                         </div>
                                     </div>
 
@@ -93,15 +93,15 @@
                                 </div>
                             </div>
                             <hr>
-                        </li>
+                        </li> -->
 
-                        <div class="edit">
+                        <form class="edit">
                             <div class="edit-detail">
                                 <input type="text" name="title" placeholder="Title">
                                 <input type="text" name="description" placeholder="Description">
                                 <div class="date-priority">
                                     <input type="date" name="date" value="dd / mm / yyyy" id="date"> 
-                                    <select name="task-priority" id="priority">
+                                    <select name="priority" id="priority">
                                         <option value="">Priority</option>
                                         <option value="p1">priority 1</option>
                                         <option value="p2">priority 2</option>
@@ -115,7 +115,7 @@
                                 <button class="cancel">Cancel</button>
                             </div>
                             <hr>
-                        </div>
+                        </form>
                         <li class="todo-item">
                             <div class="item">
                                 <input type="checkbox" name="list">

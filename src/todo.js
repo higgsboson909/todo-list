@@ -1,5 +1,6 @@
 
 import { format, compareAsc, min } from "date-fns";
+import { renderProjectNames } from "./render_elements";
 let projects = [];
 
 let inbox = [];
@@ -74,6 +75,7 @@ function create_n_pushItem(title, description, date, priority, isDone, project) 
             newProject = newProject.create(project);
             newProject.todos.push(item);
             projects.push(newProject);
+            renderProjectNames(projects);
         }
  
        if (found)  {
@@ -159,21 +161,20 @@ function allItems() {
 };
 
 // return array of today items
-function todayItems (items) {
+function getTodayItems (items) {
     let date = format(new Date(), "yyyy-MM-dd");
     console.log(date);
-    let todays = [];
     if (items.length == 0) {
         return 'not found';
     }
 
     items.forEach(item => {
         if (item.date == date) {
-            todays.push(item);
+            today.push(item);
         }
 
     });
-    return todays;
+    return today;
 
 }
 
@@ -199,15 +200,14 @@ function arrangeWrtDate(items) {
 }
 
 function getUpcomingItems(items) {
-    let array = [];
     items.forEach (item => {
         let date = item.date.split("-");
         if (compareAsc (new Date (+date[0], +date[1] - 1, +date[2]), new Date ()) == 1) {
-            array.push(item);
+            upcoming.push(item);
         }
     });
 
-    return array;
+    return upcoming;
 }
 
-export { inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, getProjectItems, allItems, todayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems}
+export { inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, getProjectItems, allItems, getTodayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems}

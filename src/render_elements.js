@@ -1,40 +1,26 @@
-import { mainHeadingEl, createTodoItemEl, todoItemsListEl } from "./dom_elements";
-import { defaultSidebarEl, renderTodos } from "./dom_elements";
+import { mainHeadingEl, createTodoDomEl, todoItemsListEl } from "./dom_elements";
+import { defaultSidebarEl, projectSidebarEl, createProjectNamesEl } from "./dom_elements";
 
+// console.log("i am projects", ps)
+// console.log("i am projects", ps.length)
 let renderMainHeading = (type) => { // className
     mainHeadingEl.innerHTML = type;
 }
 
-function renderTodayItems(today) {
-    todoItemsListEl.classList.add("today");
-    today.forEach(item => {
-        todoItemsListEl.append(createTodoItemEl(item.title, item.description, item.date, item.priority, item.isDone));
+function renderTodoItems(items) {
+    items.forEach(item => {
+        todoItemsListEl.append(createTodoDomEl(item.title, item.description, item.date, item.id, item.priority, item.isDone));
     });
 }
 
-
-function defaultSidebarEl_evL (today, inbox, upcoming) {
-    defaultSidebarEl.forEach(el => {
-        el.addEventListener ('click', (e) => {
-            if (e.target.className == "Inbox") {
-                renderMainHeading(e.target.className);
-                renderTodayItems(inbox);
-                console.log(inbox);
-            }
-            else if (e.target.className == "Today") {
-                renderMainHeading(e.target.className)
-                renderTodayItems(today);
-                console.log(today);
-            }
-            else if (e.target.className == "Upcoming") {
-                renderMainHeading(e.target.className)
-                renderTodayItems(upcoming);
-            }
-            console.log (`clicked ${e.target.className}`);
-        });
-
-    });
+function renderProjectNames(projects) {
+    projectSidebarEl.innerHTML = "";
+    // projectSidebarEl.innerHTML = `<h2 class="project">Projects</h2>`;
+    let array = createProjectNamesEl(projects);
+    array.forEach(a => {
+        projectSidebarEl.append(a);
+    })
+    
 }
 
-
-export { renderMainHeading, renderTodayItems, defaultSidebarEl_evL};
+export { renderMainHeading, renderTodoItems, renderProjectNames};

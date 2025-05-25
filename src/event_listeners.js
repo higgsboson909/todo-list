@@ -1,52 +1,36 @@
-// import { inbox, today, upcomingItems } from "./index";
-// import { renderMainHeading, renderTodayItems } from "./render_elements";
-import { defaultSidebarEl, projectSidebarEl, todoItemsListEl } from "./dom_elements";
+import { inbox, today, upcoming } from "./index";
+import { renderMainHeading, renderTodoItems } from "./render_elements";
+import { defaultSidebarEl, projectSidebarEl, todoItemsListEl, emptyTodoListEl } from "./dom_elements";
 
 
 function defaultSidebarEl_evL () {
 defaultSidebarEl.forEach(el => {
     el.addEventListener ('click', (e) => {
+            emptyTodoListEl();
         if (e.target.className == "Inbox") {
-            // renderTodos(e.target.className)
+            renderTodoItems(inbox);
         }
         else if (e.target.className == "Today") {
-            // renderTodos(e.target.className)
-            // renderTodayItems(today)
-            // console.log(`clicked ${e.target.className}`);
+            renderTodoItems(today);
         }
         else if (e.target.className == "Upcoming") {
-            // renderTodos(e.target.className)
-            // console.log (upcomingItems(inbox));
-            // checking 
-            // projects.forEach((project) => {
-            //         console.log(upcomingItems(project.todo));
-            // });
+            renderTodoItems(upcoming);
         }
-        console.log (`clicked ${e.target.className}`);
     });
 
 });
 }
 
-function projectSidebarEl_evL() {
-    projectSidebarEl.forEach(element => {
-        element.addEventListener('click', (e) => {
-            console.log (`clicked ${e.target.className}`);
-            if (e.target.className) {
-
-                // get specific project
-                // projects.forEach((project) => {
-
-                //     renderTodos(e.target.className)
-                //     if (project.name == e.target.className) {
-                //         console.log(project.todo);
-                //     }
-                // });
-                // console.log (projects);
-            }
+function projectSidebarEl_evL(projects) {
+        projectSidebarEl.addEventListener('click', (e) => {
+            emptyTodoListEl();
+            console.log (`clicked ${e.target.getAttribute('pid')}`);
+            let p = (projects[e.target.getAttribute('pid')])
+            if (p != null) 
+                renderTodoItems(p.todos);
         });
-    });
 }
+
 
 
 function getItemClick () {

@@ -1,12 +1,13 @@
 import "./styles.css";
-import {  inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, getProjectItems, allItems, todayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems } from "./todo.js";
-// import { projects, createProject, deleteProject, editProjectName } from "./projects.js"
-// import { defaultSidebarEl, projectsEl, mainHeadingEl, createTodoItemEl, todoItemsListEl} from "./dom_elements.js"; 
-import { defaultSidebarEl_evL } from "./render_elements.js";
-// defaultSidebarEl_evL();
-import { renderMainHeading, renderTodayItems } from "./render_elements.js"
+import {  inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, getProjectItems, allItems, getTodayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems } from "./todo.js";
+import { renderProjectNames, renderTodoItems } from "./render_elements.js";
+import { createTodoDomEl, projectSidebarEl } from "./dom_elements.js";
+import { defaultSidebarEl_evL, projectSidebarEl_evL } from "./event_listeners.js";
 
 
+
+defaultSidebarEl_evL();
+projectSidebarEl_evL(projects);
 
 //  Logs
 create_n_pushItem("Ai Project", "do it today", "2032-11-01", "2", true, "Ai");
@@ -15,27 +16,28 @@ create_n_pushItem("Inbox Project", "do it today", "2032-11-01", "2", true, "inbo
 create_n_pushItem("Python Project", "do it now", "2052-11-01", "3", true, "Python");
 create_n_pushItem("General", "do it now", "2012-11-12", "3", true, "Python");
 create_n_pushItem("Zig", "do it now", "2012-11-12", "3", true, "Zig");
+create_n_pushItem("Zig", "do it now", "2012-11-12", "3", true, "C++");
 create_n_pushItem("Inbox", "do it now", "2025-05-25", "4", false);
 create_n_pushItem("Hi", "lets start", "2025-05-25", "1", false);
-create_n_pushItem("Hi", "lets start", "2025-05-19", "3", true);
+create_n_pushItem("Hi", "lets start", "2025-05-25", "3", true);
 create_n_pushItem("Hi", "lets start", "2025-06-20", "2", false);
 create_n_pushItem("Hi", "lets start", "2025-11-22", "5", true);
-create_n_pushItem("Hi", "lets start", "2025-05-19", "5", false);
+create_n_pushItem("Hi", "lets start", "2025-05-25", "5", false);
 
-editTodoItem(0, "Node js", "do it before summer too", "date", "2", false, "Ai");
-editTodoItem(1, "Machine learn", "Mustufa has done this", "date", "2", true, "Ai");
-editTodoItem(3, "Scikit learn", "As an ass", "date", "2", 2, "Python");
+// editTodoItem(0, "Node js", "do it before summer too", "date", "2", false, "Ai");
+// editTodoItem(1, "Machine learn", "Mustufa has done this", "date", "2", true, "Ai");
+// editTodoItem(3, "Scikit learn", "As an ass", "date", "2", 2, "Python");
 
 
 // id and name of project
 // deleteTodoItem(0, "Ai");
-deleteTodoItem(3, "Python");
+// deleteTodoItem(3, "Python");
 // deleteTodoItem(5, "Zig");
 
 // id and new name
-editProjectName(0 , "Artificial Intelligence");
-editProjectName(1 , "Py");
-editProjectName(2 , "Zig Lang");
+// editProjectName(0 , "Artificial Intelligence");
+// editProjectName(1 , "Py");
+// editProjectName(2 , "Zig Lang");
 
 
 // deleteProject(0)
@@ -55,7 +57,9 @@ projects.forEach( el => {
         console.log(el.title, el.todos);
 })
 // console.log(allItems())
-// console.log(getUpcomingItems(inbox));
+getUpcomingItems(inbox);
+getTodayItems(inbox);
+
 console.log(("here we go"), getProjectItems(0))
 
 // console.log("todays are below", todayItems(inbox));
@@ -63,4 +67,9 @@ console.log(("here we go"), getProjectItems(0))
 // console.log("wrt data are below", arrangeWrtDate(inbox));
 // defaultSidebarEl_evL(today, inbox, upcoming);
 
-export { inbox, today , upcoming};
+// renderTodoItems(inbox);
+// let getProjects = () => {
+//         return projects
+// }
+
+export { inbox, today , upcoming, projects};
