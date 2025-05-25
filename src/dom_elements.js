@@ -93,8 +93,9 @@ function createProjectNamesEl(ps) {
 
     return array;
 }
+let dropFilterEl = document.querySelector("#list-priority");
 
 let mainHeadingEl = document.querySelector(".main-heading");
 
-export { defaultSidebarEl, projectSidebarEl, mainHeadingEl, createTodoDomEl, todoItemsListEl, emptyTodoListEl, createProjectNamesEl };
+export { defaultSidebarEl, projectSidebarEl, mainHeadingEl, createTodoDomEl, todoItemsListEl, emptyTodoListEl, createProjectNamesEl, dropFilterEl};
 

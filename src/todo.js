@@ -161,7 +161,9 @@ function allItems() {
 };
 
 // return array of today items
-function getTodayItems (items) {
+function getTodayItems (i) {
+    let today = [];
+    let items = [...i]
     let date = format(new Date(), "yyyy-MM-dd");
     console.log(date);
     if (items.length == 0) {

@@ -1,13 +1,15 @@
 import { mainHeadingEl, createTodoDomEl, todoItemsListEl } from "./dom_elements";
-import { defaultSidebarEl, projectSidebarEl, createProjectNamesEl } from "./dom_elements";
+import { defaultSidebarEl, projectSidebarEl, createProjectNamesEl, emptyTodoListEl} from "./dom_elements";
 
 // console.log("i am projects", ps)
 // console.log("i am projects", ps.length)
+
 let renderMainHeading = (type) => { // className
     mainHeadingEl.innerHTML = type;
 }
 
 function renderTodoItems(items) {
+    emptyTodoListEl();
     items.forEach(item => {
         todoItemsListEl.append(createTodoDomEl(item.title, item.description, item.date, item.id, item.priority, item.isDone));
     });

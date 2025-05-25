@@ -1,28 +1,34 @@
 import "./styles.css";
 import {  inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, getProjectItems, allItems, getTodayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems } from "./todo.js";
 import { renderProjectNames, renderTodoItems } from "./render_elements.js";
-import { createTodoDomEl, projectSidebarEl } from "./dom_elements.js";
-import { defaultSidebarEl_evL, projectSidebarEl_evL } from "./event_listeners.js";
+import { createTodoDomEl, dropFilterEl, projectSidebarEl } from "./dom_elements.js";
+import { defaultSidebarEl_evL, projectSidebarEl_evL, dropFilterEl_evL } from "./event_listeners.js";
 
 
 
 defaultSidebarEl_evL();
 projectSidebarEl_evL(projects);
+dropFilterEl_evL();
 
 //  Logs
-create_n_pushItem("Ai Project", "do it today", "2032-11-01", "2", true, "Ai");
-create_n_pushItem("Hi Project", "do it today", "2032-11-01", "2", true, "Ai");
-create_n_pushItem("Inbox Project", "do it today", "2032-11-01", "2", true, "inbox");
-create_n_pushItem("Python Project", "do it now", "2052-11-01", "3", true, "Python");
-create_n_pushItem("General", "do it now", "2012-11-12", "3", true, "Python");
-create_n_pushItem("Zig", "do it now", "2012-11-12", "3", true, "Zig");
-create_n_pushItem("Zig", "do it now", "2012-11-12", "3", true, "C++");
-create_n_pushItem("Inbox", "do it now", "2025-05-25", "4", false);
-create_n_pushItem("Hi", "lets start", "2025-05-25", "1", false);
-create_n_pushItem("Hi", "lets start", "2025-05-25", "3", true);
-create_n_pushItem("Hi", "lets start", "2025-06-20", "2", false);
-create_n_pushItem("Hi", "lets start", "2025-11-22", "5", true);
-create_n_pushItem("Hi", "lets start", "2025-05-25", "5", false);
+create_n_pushItem("AI Data Collection", "Gather training data", "2025-05-23", "2", false, "AI");
+create_n_pushItem("AI Model Training", "Train new model", "2025-05-25", "1", false, "AI");
+create_n_pushItem("AI Evaluation", "Evaluate results", "2025-05-26", "3", false, "AI");
+create_n_pushItem("AI Optimization", "Tune hyperparameters", "2025-05-27", "2", false, "AI");
+create_n_pushItem("AI Report Writing", "Write report", "2025-05-28", "4", false, "AI");
+
+create_n_pushItem("Python Bug Fixing", "Fix critical bugs", "2025-05-24", "1", false, "Python");
+create_n_pushItem("Write Unit Tests", "Add tests", "2025-05-25", "2", false, "Python");
+create_n_pushItem("Code Refactoring", "Clean codebase", "2025-05-26", "3", false, "Python");
+create_n_pushItem("Performance Tuning", "Speed improvements", "2025-05-27", "2", false, "Python");
+create_n_pushItem("Documentation", "Update docs", "2025-05-29", "4", false, "Python");
+
+create_n_pushItem("Schedule Doctor", "Annual checkup", "2025-05-22", "3", false);
+create_n_pushItem("Renew License", "Driver's license renewal", "2025-05-25", "2", false);
+create_n_pushItem("Order Supplies", "Office materials", "2025-05-26", "1", false);
+create_n_pushItem("Book Flights", "Vacation plans", "2025-05-27", "4", false);
+create_n_pushItem("Pay Bills", "Electricity and internet", "2025-05-28", "3", false);
+
 
 // editTodoItem(0, "Node js", "do it before summer too", "date", "2", false, "Ai");
 // editTodoItem(1, "Machine learn", "Mustufa has done this", "date", "2", true, "Ai");
