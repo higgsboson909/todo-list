@@ -1,4 +1,5 @@
 import { projects } from "./index";
+import { editTodoItem } from "./todo";
 
 // let p= [...projects];
 // console.log("projecst " , projects.length)
@@ -7,6 +8,8 @@ import { projects } from "./index";
 let defaultSidebarEl = document.querySelectorAll(".default div");
 
 let projectSidebarEl = document.querySelector(".projects li");
+
+let todoItemsListEl = document.querySelector(".items-list");
 
 let createTodoDomEl = (title, description, date, id, priority, isDone, project="inbox") => {
     let todoItemEl = document.createElement("li");
@@ -69,7 +72,82 @@ let createTodoDomEl = (title, description, date, id, priority, isDone, project="
 
 }
 
-let todoItemsListEl = document.querySelector(".items-list");
+let createEditEl = () =>  {
+    let formEl = document.createElement("form");
+    formEl.classList.add("edit");
+    todoItemsListEl.append(formEl);
+
+    let editDetailEl = document.createElement("div");
+    editDetailEl.classList.add("edit-detail");
+    formEl.append(editDetailEl);
+
+    let inputTitleEl = document.createElement("input");
+    inputTitleEl.name = "title";
+    inputTitleEl.type = "text";
+    inputTitleEl.placeholder = "Title";
+    editDetailEl.append(inputTitleEl);
+
+    let inputDescEl = document.createElement("input");
+    inputDescEl.name = "description";
+    inputDescEl.type = "text";
+    inputDescEl.placeholder = "Description";
+    editDetailEl.append(inputDescEl);
+
+    let date_n_priorityEl = document.createElement("div");
+    date_n_priorityEl.classList.add("date-priority");
+    editDetailEl.append(date_n_priorityEl);
+
+    let inputDateEl = document.createElement("input");
+    inputDateEl.type = "date";
+    inputDateEl.name = "date";
+    inputDateEl.value = "dd / mm / yyyy";
+    inputDateEl.id = "date";
+    date_n_priorityEl.append(inputDateEl);
+
+    let selectEl = document.createElement("select");
+    selectEl.name = "priority";
+    selectEl.id = "priority";
+
+    const priority = [
+        {value: "", text: "Priority"},
+        {value: "p1", text: "Priority 1"},
+        {value: "p2", text: "Priority 2"},
+        {value: "p3", text: "Priority 3"},
+        {value: "p4", text: "Priority 4"}
+    ];
+
+    priority.forEach (el => {
+        let optionEl = document.createElement("option");
+        optionEl.value = el.value;
+        optionEl.innerHTML = el.text;
+        selectEl.append(optionEl);
+    })
+
+
+
+    date_n_priorityEl.append(selectEl);
+
+
+    let save_cancelEl = document.createElement("div");
+    save_cancelEl.classList.add("save-line");
+    
+    let saveEl = document.createElement("button");
+    saveEl.classList.add("save");
+    saveEl.innerText = "Save Task";
+    save_cancelEl.append(saveEl);
+    
+    let cancelEl = document.createElement("button");
+    cancelEl.classList.add('cancel');
+    cancelEl.innerText = "Cancel";
+    save_cancelEl.append(cancelEl);
+    
+    formEl.append(save_cancelEl);
+
+    return formEl;
+
+}
+
+console.log(createEditEl());
 
 function emptyTodoListEl() {
     todoItemsListEl.innerHTML = "";
