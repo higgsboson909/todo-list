@@ -74,7 +74,7 @@ let createTodoDomEl = (title, description, date, id, priority, isDone, project="
 
 let createEditEl = () =>  {
     let formEl = document.createElement("form");
-    formEl.classList.add("edit");
+    formEl.classList.add("edit-form");
     todoItemsListEl.append(formEl);
 
     let editDetailEl = document.createElement("div");
@@ -175,5 +175,5 @@ let dropFilterEl = document.querySelector("#list-priority");
 
 let mainHeadingEl = document.querySelector(".main-heading");
 
-export { defaultSidebarEl, projectSidebarEl, mainHeadingEl, createTodoDomEl, todoItemsListEl, emptyTodoListEl, createProjectNamesEl, dropFilterEl};
+export { defaultSidebarEl, projectSidebarEl, mainHeadingEl, createTodoDomEl, createEditEl, todoItemsListEl, emptyTodoListEl, createProjectNamesEl, dropFilterEl};
 

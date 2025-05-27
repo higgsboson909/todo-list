@@ -1,6 +1,6 @@
 import { inbox, today, upcoming, projects } from "./index";
 import { renderMainHeading, renderTodoItems } from "./render_elements";
-import { defaultSidebarEl, projectSidebarEl, todoItemsListEl, emptyTodoListEl, dropFilterEl } from "./dom_elements";
+import { defaultSidebarEl, projectSidebarEl, todoItemsListEl, emptyTodoListEl, dropFilterEl, createEditEl } from "./dom_elements";
 import { arrangeWrtDate, arrangeWrtPriority, getProjectItems, allItems, getTodayItems } from "./todo";
 import { ar } from "date-fns/locale";
 
@@ -34,17 +34,21 @@ defaultSidebarEl.forEach(el => {
 function projectSidebarEl_evL(projects) {
     projectSidebarEl.addEventListener('click', (e) => {
         dropFilterEl.selectedIndex = 0;
-        emptyTodoListEl();
-        console.log (`clicked ${e.target.getAttribute('pid')}`);
         let p = (projects[e.target.getAttribute('pid')])
-        renderMainHeading(`Project (${p.title})`);
-        if (p != null) 
+        if (p != null || p != undefined )  {
+
+            emptyTodoListEl();
+            renderMainHeading(`Project (${p.title})`);
+
             renderTodoItems(p.todos);
-        todoItemsListEl.classList.remove(...todoItemsListEl.classList);
-        todoItemsListEl.classList.add(`items-list`);
-        todoItemsListEl.classList.add(`${e.target.getAttribute('pid')}`);
+            todoItemsListEl.classList.remove(...todoItemsListEl.classList);
+            todoItemsListEl.classList.add(`items-list`);
+            todoItemsListEl.classList.add(`${e.target.getAttribute('pid')}`);
  
-    });
+ 
+        }
+
+   });
 }
 
 function dropFilterEl_evL() {
@@ -118,22 +122,56 @@ function dropFilterEl_evL() {
             }
             
 
-            console.log("hi")
-        console.log(projects.length);
-        console.log(ulClass);
 
     })
 }
 
 function getItemClick () {
-    console.log("hi")
     todoItemsListEl.forEach(item => {
         item.addEventListener("click", (e) => {
-            console.log(e.target.className);
         })
     });
 }
 
+// let edits = document.getElementsByClassName("edit");
+todoItemsListEl.addEventListener('click', (e) => {
+    let target = e.target; 
+    if (target.className == "edit") {
+
+        let edit = document.querySelector(".edit-form");
+        
+        
+        console.log(edit)
+        
+        if (edit != null) {
+            edit.remove();
+            let allItemsEl = [];
+
+            allItemsEl.push(...todoItemsListEl.querySelectorAll("li"));
+            console.log(allItemsEl)
+            let item = allItemsEl.find(e => (e.classList.contains("none")));
+            item.classList.remove("none")
+            // todoItem.classList.remove("none");
+            
+        }
+        let todoItem = target.parentElement.parentElement.parentElement.parentElement.parentElement;
+        todoItem.before(createEditEl());
+        todoItem.classList.add("none")
+        // todoItem.append.
+        let item_no = todoItem.classList[1];
+        item_no = item_no.slice(5);
+        console.log(item_no);
+         
+        // inbox = [];
+
+    }
+
+
+})
+// edits.addEventListener('click', (e) => {
+//     console.log(e.target);
+// });
+// console.log("yeh log", edits);
 
 // console.log(today)
 

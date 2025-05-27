@@ -11,22 +11,22 @@ projectSidebarEl_evL(projects);
 dropFilterEl_evL();
 
 //  Logs
-create_n_pushItem("AI Data Collection", "Gather training data", "2025-05-23", "2", false, "AI");
-create_n_pushItem("AI Model Training", "Train new model", "2025-05-25", "1", false, "AI");
-create_n_pushItem("AI Evaluation", "Evaluate results", "2025-05-26", "3", false, "AI");
 create_n_pushItem("AI Optimization", "Tune hyperparameters", "2025-05-27", "2", false, "AI");
+create_n_pushItem("AI Data Collection", "Gather training data", "2025-05-23", "2", false, "AI");
+create_n_pushItem("AI Evaluation", "Evaluate results", "2025-05-26", "3", false, "AI");
 create_n_pushItem("AI Report Writing", "Write report", "2025-05-28", "4", false, "AI");
+create_n_pushItem("AI Model Training", "Train new model", "2025-05-25", "1", false, "AI");
 
-create_n_pushItem("Python Bug Fixing", "Fix critical bugs", "2025-05-24", "1", false, "Python");
-create_n_pushItem("Write Unit Tests", "Add tests", "2025-05-25", "2", false, "Python");
 create_n_pushItem("Code Refactoring", "Clean codebase", "2025-05-26", "3", false, "Python");
+create_n_pushItem("Write Unit Tests", "Add tests", "2025-05-25", "2", false, "Python");
 create_n_pushItem("Performance Tuning", "Speed improvements", "2025-05-27", "2", false, "Python");
 create_n_pushItem("Documentation", "Update docs", "2025-05-29", "4", false, "Python");
+create_n_pushItem("Python Bug Fixing", "Fix critical bugs", "2025-05-24", "1", false, "Python");
 
 create_n_pushItem("Schedule Doctor", "Annual checkup", "2025-05-22", "3", false);
-create_n_pushItem("Renew License", "Driver's license renewal", "2025-05-25", "2", false);
 create_n_pushItem("Order Supplies", "Office materials", "2025-05-26", "1", false);
 create_n_pushItem("Book Flights", "Vacation plans", "2025-05-27", "4", false);
+create_n_pushItem("Renew License", "Driver's license renewal", "2025-05-25", "2", false);
 create_n_pushItem("Pay Bills", "Electricity and internet", "2025-05-28", "3", false);
 
 
@@ -77,5 +77,5 @@ console.log(("here we go"), getProjectItems(0))
 // let getProjects = () => {
 //         return projects
 // }
-
+renderTodoItems(inbox);
 export { inbox, today , upcoming, projects};
