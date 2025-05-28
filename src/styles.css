@@ -112,8 +112,7 @@ body, html {
 .todo-items {
     padding: 0 25px;
 }
-.todo-item {
-}
+
 .todo-items, .item-edit{
     width: 100%;
 }
@@ -156,6 +155,10 @@ body, html {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
+}
+
+.edit-form {
+    padding-top: 10px;
 }
 .edit-delete {
     text-align: left;

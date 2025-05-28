@@ -1,6 +1,6 @@
 import { inbox, today, upcoming, projects } from "./index";
 import { renderMainHeading, renderTodoItems } from "./render_elements";
-import { defaultSidebarEl, projectSidebarEl, todoItemsListEl, emptyTodoListEl, dropFilterEl, createEditEl } from "./dom_elements";
+import { defaultSidebarEl, projectSidebarEl, todoItemsListEl, emptyTodoListEl, dropFilterEl, createEditEl, saveEl } from "./dom_elements";
 import { arrangeWrtDate, arrangeWrtPriority, getProjectItems, allItems, getTodayItems } from "./todo";
 import { ar } from "date-fns/locale";
 
@@ -132,14 +132,13 @@ function getItemClick () {
         })
     });
 }
-
+let editEl = null;
 // let edits = document.getElementsByClassName("edit");
 todoItemsListEl.addEventListener('click', (e) => {
     let target = e.target; 
     if (target.className == "edit") {
 
         let edit = document.querySelector(".edit-form");
-        
         
         console.log(edit)
         
@@ -148,31 +147,52 @@ todoItemsListEl.addEventListener('click', (e) => {
             let allItemsEl = [];
 
             allItemsEl.push(...todoItemsListEl.querySelectorAll("li"));
-            console.log(allItemsEl)
             let item = allItemsEl.find(e => (e.classList.contains("none")));
             item.classList.remove("none")
+
             // todoItem.classList.remove("none");
             
         }
         let todoItem = target.parentElement.parentElement.parentElement.parentElement.parentElement;
-        todoItem.before(createEditEl());
+        editEl = createEditEl()
+        todoItem.before(editEl)
+
+        // add event listener on the save button
+        editEl.addEventListener('submit', (e) => {
+            console.log(e.target);
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            console.log(formData)
+        })
+        
+        // let cancelEl = document.querySelector(".cancel")
+        // cancelEl.addEventListener('click', (e) => {
+        //     e.preventDefault()
+        //     console.log("hi");
+        // })
         todoItem.classList.add("none")
+        cancel_evL(todoItem, editEl);
         // todoItem.append.
         let item_no = todoItem.classList[1];
         item_no = item_no.slice(5);
         console.log(item_no);
          
+        console.log(editEl);
         // inbox = [];
 
     }
-
-
 })
-// edits.addEventListener('click', (e) => {
-//     console.log(e.target);
-// });
-// console.log("yeh log", edits);
 
-// console.log(today)
+function cancel_evL (item, edit) {
+    let cancelEl = document.querySelector(".cancel");
+    cancelEl.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        item.classList.remove("none");
+        edit.remove()
+        console.log("hi");
+    })
+
+}
 
 export { defaultSidebarEl_evL, projectSidebarEl_evL, getItemClick, dropFilterEl_evL}

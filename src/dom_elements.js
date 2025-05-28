@@ -1,3 +1,4 @@
+import { ca } from "date-fns/locale";
 import { projects } from "./index";
 import { editTodoItem } from "./todo";
 
@@ -75,6 +76,7 @@ let createTodoDomEl = (title, description, date, id, priority, isDone, project="
 let createEditEl = () =>  {
     let formEl = document.createElement("form");
     formEl.classList.add("edit-form");
+    formEl.id = "edit-form"
     todoItemsListEl.append(formEl);
 
     let editDetailEl = document.createElement("div");
@@ -133,12 +135,15 @@ let createEditEl = () =>  {
     
     let saveEl = document.createElement("button");
     saveEl.classList.add("save");
+    saveEl.type = "submit";
+    saveEl.setAttribute("form", "edit-form");
     saveEl.innerText = "Save Task";
     save_cancelEl.append(saveEl);
     
     let cancelEl = document.createElement("button");
     cancelEl.classList.add('cancel');
     cancelEl.innerText = "Cancel";
+    cancelEl.type = "button";
     save_cancelEl.append(cancelEl);
     
     formEl.append(save_cancelEl);
@@ -146,8 +151,6 @@ let createEditEl = () =>  {
     return formEl;
 
 }
-
-console.log(createEditEl());
 
 function emptyTodoListEl() {
     todoItemsListEl.innerHTML = "";
@@ -174,6 +177,7 @@ function createProjectNamesEl(ps) {
 let dropFilterEl = document.querySelector("#list-priority");
 
 let mainHeadingEl = document.querySelector(".main-heading");
+let saveEl = document.querySelector(".save");
 
-export { defaultSidebarEl, projectSidebarEl, mainHeadingEl, createTodoDomEl, createEditEl, todoItemsListEl, emptyTodoListEl, createProjectNamesEl, dropFilterEl};
+export { defaultSidebarEl, projectSidebarEl, mainHeadingEl, createTodoDomEl, createEditEl, todoItemsListEl, emptyTodoListEl, createProjectNamesEl, dropFilterEl, saveEl };
 
