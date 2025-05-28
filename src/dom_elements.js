@@ -24,6 +24,7 @@ let createTodoDomEl = (title, description, date, id, priority, isDone, project="
     todoItemEl.append(itemEl);
 
     let inputEl = document.createElement("input");
+    inputEl.classList.add("todo-check")
     inputEl.setAttribute("type", "checkbox");
     inputEl.setAttribute("name", "list");
     itemEl.append(inputEl);
@@ -105,6 +106,8 @@ let createEditEl = () =>  {
     inputDateEl.value = "dd / mm / yyyy";
     inputDateEl.id = "date";
     date_n_priorityEl.append(inputDateEl);
+
+
 
     let selectEl = document.createElement("select");
     selectEl.name = "priority";
