@@ -78,7 +78,12 @@
                         </li>
                         <li class="todo-item">
                             <div class="item">
-                                <input type="checkbox" name="list">
+
+                                <label class="custom-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <!-- <input type="checkbox" name="list"> -->
                                 <div class="item-detail">
                                     <div class="title-line">
                                         <div class="item-title">Ai</div>
@@ -87,7 +92,6 @@
                                             <div class="delete">delete</div>
                                         </div>
                                     </div>
-
                                     <div class="description">desc</div>
                                     <div class="date">12/23/20023</div>
                                 </div>
@@ -101,9 +105,7 @@
                                 <input type="text" name="description" placeholder="Description">
                                 <div class="date-priority">
                                     <input type="date" name="date" value="dd / mm / yyyy" id="date"> 
-                                    <div class="project-drop-down">
-                                        <div class="project-name">Inbox</div>
-                                    </div>
+
 
                                     <select name="priority" id="priority">
                                         <option value="">Priority</option>
@@ -112,6 +114,17 @@
                                         <option value="p3">priority 3</option>
                                         <option value="p4">priority 4</option>
                                     </select>
+
+                                    <select class="project-drop-down" name="project" id="project">
+                                        <option value="">Project</option>
+                                    </select>
+
+                                    <div class="none">
+                                        <div class="">Inbox</div>
+                                        <div class="">Inbox</div>
+                                        <div class="">Inbox</div>
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="save-line">

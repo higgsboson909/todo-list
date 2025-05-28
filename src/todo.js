@@ -7,13 +7,16 @@ let inbox = [];
 let today = [];
 let upcoming = [];
 
+const projectNames = [];
+
+projectNames.push("inbox");
 
 // to create new todo item
 const Todo_Item = class {
 
     static id = 0;
     
-    create(title, description, date, priority, isDone, project="inbox") {
+    create(title, description, date, priority="0", isDone, project="inbox") {
         this.title = title;
         this.description = description;
         this.date = date;

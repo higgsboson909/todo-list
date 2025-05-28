@@ -1,10 +1,7 @@
 import { ca } from "date-fns/locale";
-import { projects } from "./index";
-import { editTodoItem } from "./todo";
-
-// let p= [...projects];
-// console.log("projecst " , projects.length)
-// console.log("projecst " , projects)
+import { projects, editTodoItem } from "./todo";
+import { renderCheckboxColor } from "./render_elements";
+// import { projects } from "./todo.js";
 
 let defaultSidebarEl = document.querySelectorAll(".default div");
 
@@ -23,11 +20,26 @@ let createTodoDomEl = (title, description, date, id, priority, isDone, project="
 
     todoItemEl.append(itemEl);
 
+    let customCheckboxEl = document.createElement("label");
+    customCheckboxEl.classList.add("custom-checkbox");
+    
+    
+
     let inputEl = document.createElement("input");
     inputEl.classList.add("todo-check")
     inputEl.setAttribute("type", "checkbox");
-    inputEl.setAttribute("name", "list");
-    itemEl.append(inputEl);
+
+    let checkMarkEl = document.createElement("span");
+    checkMarkEl.classList.add("checkmark");
+
+    customCheckboxEl.append(inputEl);
+    customCheckboxEl.append(checkMarkEl);
+
+    // inputEl.setAttribute("name", "list");
+
+    renderCheckboxColor(checkMarkEl, priority);
+
+    itemEl.append(customCheckboxEl);
 
     let itemDetailEl = document.createElement("div");
     itemDetailEl.setAttribute("class", "item-detail");
@@ -60,6 +72,7 @@ let createTodoDomEl = (title, description, date, id, priority, isDone, project="
     itemDetailEl.append(descriptionEl);
 
     let dateEl = document.createElement("div");
+    dateEl.classList.add("date")
     dateEl.innerText = date;
     itemDetailEl.append(dateEl);
 
@@ -74,6 +87,7 @@ let createTodoDomEl = (title, description, date, id, priority, isDone, project="
 
 }
 
+    // console.log("project", projects)
 let createEditEl = () =>  {
     let formEl = document.createElement("form");
     formEl.classList.add("edit-form");
@@ -109,9 +123,9 @@ let createEditEl = () =>  {
 
 
 
-    let selectEl = document.createElement("select");
-    selectEl.name = "priority";
-    selectEl.id = "priority";
+    let priorityEl = document.createElement("select");
+    priorityEl.name = "priority";
+    priorityEl.id = "priority";
 
     const priority = [
         {value: "", text: "Priority"},
@@ -125,12 +139,19 @@ let createEditEl = () =>  {
         let optionEl = document.createElement("option");
         optionEl.value = el.value;
         optionEl.innerHTML = el.text;
-        selectEl.append(optionEl);
+        priorityEl.append(optionEl);
     })
 
+    let projectEl = document.createElement("select");
+    projectEl.name = "project";
+    projectEl.id = "project";
 
 
-    date_n_priorityEl.append(selectEl);
+
+
+
+
+    date_n_priorityEl.append(priorityEl);
 
 
     let save_cancelEl = document.createElement("div");

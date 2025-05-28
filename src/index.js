@@ -28,6 +28,7 @@ create_n_pushItem("Order Supplies", "Office materials", "2025-05-26", "1", false
 create_n_pushItem("Book Flights", "Vacation plans", "2025-05-27", "4", false);
 create_n_pushItem("Renew License", "Driver's license renewal", "2025-05-25", "2", false);
 create_n_pushItem("Pay Bills", "Electricity and internet", "2025-05-28", "3", false);
+create_n_pushItem("Pay Bills", "Electricity and internet", "2025-05-28", null, false, "Zig");
 
 
 // editTodoItem(0, "Node js", "do it before summer too", "date", "2", false, "Ai");
@@ -68,14 +69,5 @@ getTodayItems(inbox);
 
 console.log(("here we go"), getProjectItems(0))
 
-// console.log("todays are below", todayItems(inbox));
-// console.log("wrt priority are below", arrangeWrtPriority(inbox));
-// console.log("wrt data are below", arrangeWrtDate(inbox));
-// defaultSidebarEl_evL(today, inbox, upcoming);
-
-// renderTodoItems(inbox);
-// let getProjects = () => {
-//         return projects
-// }
 renderTodoItems(inbox);
 export { inbox, today , upcoming, projects};

@@ -205,19 +205,22 @@ body, html {
     display: flex;
     align-items: center;
     justify-content:first baseline;
-    gap: 30px;
+    gap: 20px;
 }
 
 .project-drop-down {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 110px;
+    width: max-content;
     height: 30px;
     padding: 5px;
     border-radius: 5px;
-    border: solid 1px white;
+    background-color: #323232;
     text-align: center;
+    outline: none;
+    border: none;
+    font-size: 11px;
 }
 .project-drop-down:hover, #priority:hover, #date:hover, .save:hover, .cancel:hover, .edit:hover, .delete:hover, .item-detail:hover, .todo-check:hover, #list-priority:hover {
     cursor: pointer;
@@ -225,6 +228,7 @@ body, html {
 .project-name {
     font-size: small;
 }
+
 #priority {
     padding: 0 10px;
     outline: none;
@@ -255,6 +259,57 @@ body, html {
     color: black;
 }
 
-.none {
+.none, div .none {
     display: none;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.custom-checkbox input {
+  display: none;
+}
+
+.custom-checkbox .checkmark {
+  width: 17px;
+  height: 17px;
+  background-color: white;
+  border-radius: 10px;
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+}
+
+.custom-checkbox input:checked + .checkmark {
+  background-color: gray;
+}
+.custom-checkbox input:checked + .checkmark::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 2px;
+  height: 6px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.white {
+    border: solid 2px white;
+}
+.red{
+    border: solid 2px #e53935;
+}
+.blue{
+    border: solid 2px blue;
+}
+.yellow{
+    border: solid 2px yellow;
+}
+.green{
+    border: solid 2px green;
 }

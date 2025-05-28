@@ -1,5 +1,5 @@
 import { inbox, today, upcoming, projects } from "./index";
-import { renderMainHeading, renderTodoItems } from "./render_elements";
+import { renderMainHeading, renderTodoItems, renderOnEditForm } from "./render_elements";
 import { defaultSidebarEl, projectSidebarEl, todoItemsListEl, emptyTodoListEl, dropFilterEl, createEditEl, saveEl } from "./dom_elements";
 import { arrangeWrtDate, arrangeWrtPriority, getProjectItems, allItems, getTodayItems } from "./todo";
 import { ar } from "date-fns/locale";
@@ -133,7 +133,7 @@ function getItemClick () {
     });
 }
 let editEl = null;
-// let edits = document.getElementsByClassName("edit");
+
 todoItemsListEl.addEventListener('click', (e) => {
     let target = e.target; 
     if (target.className == "edit") {
@@ -156,6 +156,8 @@ todoItemsListEl.addEventListener('click', (e) => {
         let todoItem = target.parentElement.parentElement.parentElement.parentElement.parentElement;
         editEl = createEditEl()
         todoItem.before(editEl)
+        
+        renderOnEditForm(todoItem)
 
         // add event listener on the save button
         editEl.addEventListener('submit', (e) => {
@@ -165,11 +167,6 @@ todoItemsListEl.addEventListener('click', (e) => {
             console.log(formData)
         })
         
-        // let cancelEl = document.querySelector(".cancel")
-        // cancelEl.addEventListener('click', (e) => {
-        //     e.preventDefault()
-        //     console.log("hi");
-        // })
         todoItem.classList.add("none")
         cancel_evL(todoItem, editEl);
         // todoItem.append.
@@ -178,7 +175,6 @@ todoItemsListEl.addEventListener('click', (e) => {
         console.log(item_no);
          
         console.log(editEl);
-        // inbox = [];
 
     }
 })
