@@ -142,16 +142,45 @@ let createEditEl = () =>  {
         priorityEl.append(optionEl);
     })
 
+
+    date_n_priorityEl.append(priorityEl);
+
     let projectEl = document.createElement("select");
     projectEl.name = "project";
     projectEl.id = "project";
 
+    function getProjectDropDown(projects) {
+        
+        const array = ['inbox'];
+
+        if(projects.length != 0) {
+            projects.forEach((p) => {
+                array.push(p.title);
+            })
+        }
+
+        return array;
+    }
+    let array = getProjectDropDown(projects);
+    
+    const projectsOnDropDown = [
+    ];
+
+    array.forEach((a, i) => {
+        const obj = {value: `p${i}`, text: `${a}`};
+        projectsOnDropDown.push(obj);
+    });
+
+
+    
+
+
+    console.log(projectsOnDropDown);
+    date_n_priorityEl.append(projectEl);
 
 
 
 
-
-    date_n_priorityEl.append(priorityEl);
 
 
     let save_cancelEl = document.createElement("div");
