@@ -215,4 +215,16 @@ function getUpcomingItems(items) {
     return upcoming;
 }
 
-export { inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, getProjectItems, allItems, getTodayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems}
+function getAllProjectNames(items) {
+    
+    const array = ['inbox'];
+
+    if(items.length != 0) {
+        items.forEach((item) => {
+            array.push(item.title);
+        })
+    }
+    return array;
+}
+
+export { inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, getProjectItems, allItems, getTodayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems, getAllProjectNames}

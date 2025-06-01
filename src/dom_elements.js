@@ -1,7 +1,18 @@
 import { ca } from "date-fns/locale";
-import { projects, editTodoItem } from "./todo";
+import { projects, editTodoItem, getAllProjectNames } from "./todo";
 import { renderCheckboxColor } from "./render_elements";
 // import { projects } from "./todo.js";
+
+function renderOptionsForDropDown(items, parent) {
+    items.forEach(item => {
+        let optionEl = document.createElement("option");
+        optionEl.value = item.value;
+        optionEl.innerHTML = item.text;
+        parent.append(optionEl);
+    });
+}
+
+
 
 let defaultSidebarEl = document.querySelectorAll(".default div");
 
@@ -135,53 +146,30 @@ let createEditEl = () =>  {
         {value: "p4", text: "Priority 4"}
     ];
 
-    priority.forEach (el => {
-        let optionEl = document.createElement("option");
-        optionEl.value = el.value;
-        optionEl.innerHTML = el.text;
-        priorityEl.append(optionEl);
-    })
-
-
+    renderOptionsForDropDown(priority, priorityEl);
     date_n_priorityEl.append(priorityEl);
 
     let projectEl = document.createElement("select");
     projectEl.name = "project";
     projectEl.id = "project";
+    projectEl.classList.add("project-drop-down");
 
-    function getProjectDropDown(projects) {
-        
-        const array = ['inbox'];
-
-        if(projects.length != 0) {
-            projects.forEach((p) => {
-                array.push(p.title);
-            })
-        }
-
-        return array;
-    }
-    let array = getProjectDropDown(projects);
     
-    const projectsOnDropDown = [
+    const allProjects = [
     ];
 
-    array.forEach((a, i) => {
+    let projectNamesArray = getAllProjectNames(projects);
+    // create the object array for options like above
+    projectNamesArray.forEach((a, i) => {
         const obj = {value: `p${i}`, text: `${a}`};
-        projectsOnDropDown.push(obj);
+        allProjects.push(obj);
     });
 
+    renderOptionsForDropDown(allProjects, projectEl);
 
-    
 
-
-    console.log(projectsOnDropDown);
+    // console.log(projectsOnDropDown);
     date_n_priorityEl.append(projectEl);
-
-
-
-
-
 
     let save_cancelEl = document.createElement("div");
     save_cancelEl.classList.add("save-line");
