@@ -1,6 +1,6 @@
 import { inbox, today, upcoming, projects } from "./index";
 import { renderMainHeading, renderTodoItems, renderOnEditForm } from "./render_elements";
-import { defaultSidebarEl, projectSidebarEl, todoItemsListEl, emptyTodoListEl, dropFilterEl, createEditEl, saveEl } from "./dom_elements";
+import { defaultSidebarEl, projectSidebarEl, todoItemsListEl, emptyTodoListEl, dropFilterEl, createEditEl, saveEl, mainHeadingEl } from "./dom_elements";
 import { arrangeWrtDate, arrangeWrtPriority, getProjectItems, allItems, getTodayItems } from "./todo";
 import { ar } from "date-fns/locale";
 
@@ -9,16 +9,23 @@ defaultSidebarEl.forEach(el => {
     el.addEventListener ('click', (e) => {
         dropFilterEl.selectedIndex = 0;
         emptyTodoListEl();
+        
         renderMainHeading(e.target.className);
         if (e.target.className == "Inbox") {
             renderTodoItems(inbox);
+            mainHeadingEl.classList.remove("Inbox", "Upcoming", "Today");
+            mainHeadingEl.classList.add("Inbox");
         }
         else if (e.target.className == "Today") {
             let array = getTodayItems(allItems());
             renderTodoItems(array);
+            mainHeadingEl.classList.remove("Inbox", "Upcoming", "Today");
+            mainHeadingEl.classList.add("Today");
         }
         else if (e.target.className == "Upcoming") {
             renderTodoItems(upcoming);
+            mainHeadingEl.classList.remove("Inbox", "Upcoming", "Today");
+            mainHeadingEl.classList.add("Upcoming");
         }
 
         // add current class name on ul element
@@ -39,7 +46,8 @@ function projectSidebarEl_evL(projects) {
 
             emptyTodoListEl();
             renderMainHeading(`Project (${p.title})`);
-
+            mainHeadingEl.classList.remove(...mainHeadingEl.classList);
+            mainHeadingEl.classList.add("main-heading", p.title);
             renderTodoItems(p.todos);
             todoItemsListEl.classList.remove(...todoItemsListEl.classList);
             todoItemsListEl.classList.add(`items-list`);
