@@ -148,7 +148,6 @@ todoItemsListEl.addEventListener('click', (e) => {
 
         let edit = document.querySelector(".edit-form");
         
-        console.log(edit)
         
         if (edit != null) {
             edit.remove();
@@ -165,7 +164,7 @@ todoItemsListEl.addEventListener('click', (e) => {
         editEl = createEditEl()
         todoItem.before(editEl)
         
-        renderOnEditForm(todoItem)
+        renderOnEditForm(todoItem, editEl);
 
         // add event listener on the save button
         editEl.addEventListener('submit', (e) => {

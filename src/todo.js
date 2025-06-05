@@ -227,4 +227,48 @@ function getAllProjectNames(items) {
     return array;
 }
 
-export { inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, getProjectItems, allItems, getTodayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems, getAllProjectNames}
+function getItemDetails(item) {
+
+    // get the detail for edit Form
+    let itemIdText = item.classList[1];
+    let itemId = itemIdText.slice(5);
+    let mainHeadEl = document.querySelector(".main-heading");
+    let mainHeading = mainHeadEl.classList[1];
+    let todo = null;
+
+    console.log(itemId);
+    if (mainHeading == "Inbox") {
+        console.log(itemId);
+        todo = inbox.find((t) => { return t.id == itemId});
+    }
+    else if (mainHeading == "Today") {
+         
+        console.log(today);
+        todo = today.find(t => (t.id == itemId));
+    }
+    else {
+        let project = projects.find(p => (p.title == mainHeading));
+        todo = project.todos.find(t => (t.id == itemId));
+    }
+
+    let title = todo.title;
+    let  description = todo.description;
+    let  date = todo.date;
+    let priority = todo.priority;
+    let project = todo.project;
+    
+    return {title, description, date, priority, project};
+
+}
+
+    function getProjectId(name) {
+        if (name != "inbox") {
+            console.log(name);
+            let project = projects.find(p => (p.title == name));
+            return project.id;
+        }
+        else
+            return "-1";
+    }
+
+export { inbox, projects, today, upcoming, create_n_pushItem, editTodoItem, deleteProject, editProjectName, deleteTodoItem, getProjectItems, allItems, getTodayItems, arrangeWrtDate, arrangeWrtPriority, getUpcomingItems, getAllProjectNames, getItemDetails, getProjectId}

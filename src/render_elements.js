@@ -1,6 +1,6 @@
 import { mainHeadingEl, createTodoDomEl, todoItemsListEl } from "./dom_elements";
 import { defaultSidebarEl, projectSidebarEl, createProjectNamesEl, emptyTodoListEl} from "./dom_elements";
-import { inbox, projects } from "./todo"
+import { getItemDetails, inbox, projects, getProjectId } from "./todo"
 
 let renderMainHeading = (type) => { // className
     mainHeadingEl.innerHTML = type;
@@ -22,33 +22,24 @@ function renderProjectNames(projects) {
     
 }
 
-function renderOnEditForm(item) {
+function renderOnEditForm(item, editEl) {
 
-    // get the detail for edit Form
-    let itemIdText = item.classList[1];
-    let itemId = itemIdText.slice(5);
-    let mainHeadEl = document.querySelector(".main-heading");
-    let mainHeading = mainHeadEl.classList[1];
-    let todo = null;
-
-    console.log(mainHeading);
-    if (mainHeading == "Inbox") {
-        console.log(itemId);
-        todo = inbox.find((t) => { return t.id == itemId});
-    }
-    else {
-        let project = projects.find(p => (p.title == mainHeading));
-        todo = project.todos.find(t => (t.id == itemId));
-    }
-
-    let title = todo.title;
-    let  description = todo.description;
-    let  date = todo.date;
-    let priority = todo.priority;
-    let p= todo.project;
+    let todo = getItemDetails(item);
+     
+    editEl.querySelector(".title").value = todo.title;
+    editEl.querySelector(".description").value = todo.description;
+    console.log(todo.date);
+    editEl.querySelector("#date").value = todo.date;
+    editEl.querySelector("#priority").value = `p${todo.priority}`;
 
 
-    console.log({title, description, date, priority, p})
+    editEl.querySelector("#project").value = `p${+getProjectId(todo.project) + 1}`;
+
+    // editEl.querySelector("").value = todo.description;
+
+    // console.log(editEl.querySelector(".title").value);
+
+    console.log(todo);
 }
 
 function renderCheckboxColor(checkMarkEl, priority) {

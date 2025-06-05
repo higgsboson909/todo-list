@@ -109,17 +109,22 @@ let createEditEl = () =>  {
     editDetailEl.classList.add("edit-detail");
     formEl.append(editDetailEl);
 
+
+
     let inputTitleEl = document.createElement("input");
     inputTitleEl.name = "title";
     inputTitleEl.type = "text";
     inputTitleEl.placeholder = "Title";
     editDetailEl.append(inputTitleEl);
+    inputTitleEl.classList.add("title")
+
 
     let inputDescEl = document.createElement("input");
     inputDescEl.name = "description";
     inputDescEl.type = "text";
     inputDescEl.placeholder = "Description";
     editDetailEl.append(inputDescEl);
+    inputDescEl.classList.add("description");
 
     let date_n_priorityEl = document.createElement("div");
     date_n_priorityEl.classList.add("date-priority");
