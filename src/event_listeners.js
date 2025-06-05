@@ -1,7 +1,7 @@
 import { inbox, today, upcoming, projects } from "./index";
 import { renderMainHeading, renderTodoItems, renderOnEditForm } from "./render_elements";
 import { defaultSidebarEl, projectSidebarEl, todoItemsListEl, emptyTodoListEl, dropFilterEl, createEditEl, saveEl, mainHeadingEl } from "./dom_elements";
-import { arrangeWrtDate, arrangeWrtPriority, getProjectItems, allItems, getTodayItems } from "./todo";
+import { arrangeWrtDate, arrangeWrtPriority, getProjectItems, allItems, getTodayItems, getUpcomingItems } from "./todo";
 import { ar } from "date-fns/locale";
 
 function defaultSidebarEl_evL () {
@@ -23,7 +23,8 @@ defaultSidebarEl.forEach(el => {
             mainHeadingEl.classList.add("Today");
         }
         else if (e.target.className == "Upcoming") {
-            renderTodoItems(upcoming);
+            let array = getUpcomingItems(allItems());
+            renderTodoItems(array);
             mainHeadingEl.classList.remove("Inbox", "Upcoming", "Today");
             mainHeadingEl.classList.add("Upcoming");
         }

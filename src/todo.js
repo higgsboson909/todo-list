@@ -165,8 +165,8 @@ function allItems() {
 
 // return array of today items
 function getTodayItems (i) {
-    let today = [];
-    let items = [...i]
+    let items = [...i];
+    let t = [];
     let date = format(new Date(), "yyyy-MM-dd");
     console.log(date);
     if (items.length == 0) {
@@ -175,11 +175,12 @@ function getTodayItems (i) {
 
     items.forEach(item => {
         if (item.date == date) {
-            today.push(item);
+            t.push(item);
         }
 
     });
-    return today;
+    today = t;
+    return t;
 
 }
 
@@ -204,15 +205,20 @@ function arrangeWrtDate(items) {
     return array;
 }
 
-function getUpcomingItems(items) {
+function getUpcomingItems(i) {
+    let items = [...i];
+    let u = [];
+    console.log("items", upcoming);
     items.forEach (item => {
         let date = item.date.split("-");
         if (compareAsc (new Date (+date[0], +date[1] - 1, +date[2]), new Date ()) == 1) {
-            upcoming.push(item);
+            console.log("items", item);
+            upcoming = u;
+            u.push(item);
         }
     });
 
-    return upcoming;
+    return u;
 }
 
 function getAllProjectNames(items) {
@@ -246,6 +252,12 @@ function getItemDetails(item) {
         console.log(today);
         todo = today.find(t => (t.id == itemId));
     }
+    else if (mainHeading == "Upcoming") {
+         
+        todo = upcoming.find(t => (t.id == itemId));
+        console.log("upcoming", upcoming)
+    }
+
     else {
         let project = projects.find(p => (p.title == mainHeading));
         todo = project.todos.find(t => (t.id == itemId));
