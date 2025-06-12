@@ -102,6 +102,7 @@ function editTodoItem(id, title, description, date, priority, isDone, project) {
 
     else if (project != "inbox") {
         let p = projects.find(p => (p.title == project));
+        console.log(p)
         let item = p.todos.find(todo => (todo.id == id));
         console.log("hi i am done ", item instanceof Todo_Item)
         console.log( "hi");
@@ -244,7 +245,6 @@ function getItemDetails(item) {
 
     console.log(itemId);
     if (mainHeading == "Inbox") {
-        console.log(itemId);
         todo = inbox.find((t) => { return t.id == itemId});
     }
     else if (mainHeading == "Today") {

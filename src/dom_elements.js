@@ -1,7 +1,6 @@
 import { ca } from "date-fns/locale";
 import { projects, editTodoItem, getAllProjectNames } from "./todo";
 import { renderCheckboxColor } from "./render_elements";
-// import { projects } from "./todo.js";
 
 function renderOptionsForDropDown(items, parent) {
     items.forEach(item => {
@@ -24,7 +23,6 @@ let createTodoDomEl = (title, description, date, id, priority, isDone, project="
     let todoItemEl = document.createElement("li");
     todoItemEl.setAttribute("class", "todo-item");
 
-    // todoItemEl.append(breakEl);
     
     let itemEl = document.createElement("div");
     itemEl.setAttribute("class", "item");
@@ -46,7 +44,6 @@ let createTodoDomEl = (title, description, date, id, priority, isDone, project="
     customCheckboxEl.append(inputEl);
     customCheckboxEl.append(checkMarkEl);
 
-    // inputEl.setAttribute("name", "list");
 
     renderCheckboxColor(checkMarkEl, priority);
 

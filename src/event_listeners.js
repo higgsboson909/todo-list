@@ -1,7 +1,7 @@
 import { inbox, today, upcoming, projects } from "./index";
 import { renderMainHeading, renderTodoItems, renderOnEditForm } from "./render_elements";
 import { defaultSidebarEl, projectSidebarEl, todoItemsListEl, emptyTodoListEl, dropFilterEl, createEditEl, saveEl, mainHeadingEl } from "./dom_elements";
-import { arrangeWrtDate, arrangeWrtPriority, getProjectItems, allItems, getTodayItems, getUpcomingItems } from "./todo";
+import { arrangeWrtDate, arrangeWrtPriority, getProjectItems, allItems, getTodayItems, getUpcomingItems, editTodoItem } from "./todo";
 import { ar } from "date-fns/locale";
 
 function defaultSidebarEl_evL () {
@@ -143,10 +143,14 @@ function getItemClick () {
 }
 let editEl = null;
 
-todoItemsListEl.addEventListener('click', (e) => {
-    let target = e.target; 
-    if (target.className == "edit") {
 
+    
+todoItemsListEl.addEventListener('click', (e) => {
+
+
+    let target = e.target; 
+    console.log("hi", target);
+    if (target.className == "edit") {
         let edit = document.querySelector(".edit-form");
         
         
@@ -167,25 +171,41 @@ todoItemsListEl.addEventListener('click', (e) => {
         
         renderOnEditForm(todoItem, editEl);
 
-        // add event listener on the save button
-        editEl.addEventListener('submit', (e) => {
-            console.log(e.target);
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            console.log(formData)
-        })
+        let item_no = todoItem.classList[1];
+        item_no = item_no.slice(5);
+
+        saveItemDetails(editEl, item_no);
         
         todoItem.classList.add("none")
         cancel_evL(todoItem, editEl);
+
         // todoItem.append.
-        let item_no = todoItem.classList[1];
-        item_no = item_no.slice(5);
         console.log(item_no);
          
         console.log(editEl);
 
-    }
+        }
+
+
 })
+
+
+function saveItemDetails(el, id) {
+    // add event listener on the save button
+    el.addEventListener('submit', (e) => {
+        console.log(e.target);
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        console.log(id);
+        console.log(formData);
+        console.log(formData.get("title"));
+
+        // if(formData.priorit == 0)
+        editTodoItem(+id, formData.get("title"), formData.get("description"), formData.get("date"), formData.get("priority").slice(1), false, "inbox");
+
+    })
+}
+
 
 function cancel_evL (item, edit) {
     let cancelEl = document.querySelector(".cancel");

@@ -6,6 +6,7 @@ let renderMainHeading = (type) => { // className
     mainHeadingEl.innerHTML = type;
 }
 
+
 function renderTodoItems(items) {
     emptyTodoListEl();
     items.forEach(item => {
@@ -35,10 +36,6 @@ function renderOnEditForm(item, editEl) {
 
     editEl.querySelector("#project").value = `p${+getProjectId(todo.project) + 1}`;
 
-    // editEl.querySelector("").value = todo.description;
-
-    // console.log(editEl.querySelector(".title").value);
-
     console.log(todo);
 }
 
@@ -56,4 +53,4 @@ function renderCheckboxColor(checkMarkEl, priority) {
         checkMarkEl.classList.add("yellow");
     }
 }
-export { renderMainHeading, renderTodoItems, renderProjectNames, renderOnEditForm, renderCheckboxColor};
+export { renderMainHeading, renderTodoItems, renderProjectNames, renderOnEditForm, renderCheckboxColor };
