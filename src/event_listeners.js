@@ -25,8 +25,8 @@ defaultSidebarEl.forEach(el => {
         else if (e.target.className == "Upcoming") {
             let array = getUpcomingItems(allItems());
             renderTodoItems(array);
-            mainHeadingEl.classList.remove("Inbox", "Upcoming", "Today");
-            mainHeadingEl.classList.add("Upcoming");
+            mainHeadingEl.classList.remove(...mainHeadingEl.classList);
+            mainHeadingEl.classList.add("main-heading", "Upcoming");
         }
 
         // add current class name on ul element
@@ -168,7 +168,7 @@ todoItemsListEl.addEventListener('click', (e) => {
         let todoItem = target.parentElement.parentElement.parentElement.parentElement.parentElement;
         editEl = createEditEl()
         todoItem.before(editEl)
-        
+        console.log("lvoevj j", todoItem) 
         renderOnEditForm(todoItem, editEl);
 
         let item_no = todoItem.classList[1];

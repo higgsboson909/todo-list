@@ -244,8 +244,11 @@ function getItemDetails(item) {
     let todo = null;
 
     console.log(itemId);
+    console.log("main heading", mainHeading);
+
+
     if (mainHeading == "Inbox") {
-        todo = inbox.find((t) => { return t.id == itemId});
+        todo = inbox.find((t) => (t.id == itemId));
     }
     else if (mainHeading == "Today") {
          
@@ -264,8 +267,8 @@ function getItemDetails(item) {
     }
 
     let title = todo.title;
-    let  description = todo.description;
-    let  date = todo.date;
+    let description = todo.description;
+    let date = todo.date;
     let priority = todo.priority;
     let project = todo.project;
     
