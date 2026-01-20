@@ -10,7 +10,7 @@
   "dependencies": {
     "date-fns": "^4.1.0"
   },
-"homepage": "https://yourusername.github.io/webpack-app",
+"homepage": "https://higgsboson906.github.io/todo-list",
 "scripts": {
   "start": "webpack serve",
   "build": "webpack",
